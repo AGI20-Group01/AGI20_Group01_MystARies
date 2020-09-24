@@ -34,7 +34,7 @@ public class ARControle : MonoBehaviour
 
     private void PlaceObject()
     {
-        Instantiate(cube, placementPose.position, placementPose.rotation);
+        Instantiate(cube, placementPose.position, Quaternion.identity /* placementPose.rotation*/);
     }
 
     private void UpdatePlacementPose()

@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placementIndicator: {fileID: 1492331470}
-  cube: {fileID: 8146664269916650409, guid: dcbbce31bd8ee5e4986b1b7adc9db354, type: 3}
+  cube: {fileID: 7474448255635946345, guid: a1c22017c2225654a83578e87ec5594e, type: 3}
 --- !u!114 &1407154094
 MonoBehaviour:
   m_ObjectHideFlags: 0
