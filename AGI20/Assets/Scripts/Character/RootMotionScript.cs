@@ -27,6 +27,7 @@ public class RootMotionScript : MonoBehaviour {
             //Debug.Log("vertical:"+animator.GetFloat("vertical"));
             Vector3 newPosition = transform.position;
             newPosition.z += animator.GetFloat("vertical") * Time.deltaTime; 
+            //transform.position += transform.forward * animator.GetFloat("vertical") * Time.deltaTime;
             newPosition.x += animator.GetFloat("horizontal") * Time.deltaTime;
             transform.position = newPosition;
 

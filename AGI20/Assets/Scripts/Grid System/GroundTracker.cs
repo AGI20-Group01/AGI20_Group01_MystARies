@@ -12,9 +12,10 @@ public class GroundTracker : MonoBehaviour
     public Transform theGround;
 
 
-    public Slider x;
+    /*public Slider x;
     public Slider y;
     public Slider z;
+    */
     public Slider type;
     public Slider op;
 
@@ -70,7 +71,7 @@ public class GroundTracker : MonoBehaviour
     }
     //******
 
-    public void test() {
+    /*public void test() {
         float fx = x.value;
         float fy = y.value;
         float fz = z.value;
@@ -91,5 +92,5 @@ public class GroundTracker : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(new Vector3(fx, fy, fz), 0.1f);
 
-    }
+    }*/
 }
