@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7474448255635946345
+--- !u!1 &279832152378321738
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,35 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6107566857749258337}
+  - component: {fileID: 279832152378321739}
+  - component: {fileID: 279832152378321740}
   m_Layer: 0
-  m_Name: Blcube
+  m_Name: StoneGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6107566857749258337
+--- !u!4 &279832152378321739
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7474448255635946345}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_GameObject: {fileID: 279832152378321738}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.2659826, y: -0.53158474, z: 0.3687514}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 93114816549985682}
+  - {fileID: 317662796125897446}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &486518587313683065
+--- !u!114 &279832152378321740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279832152378321738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f83d13cb0013d4688699e66d305df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  underMaterial: {fileID: 2100000, guid: bf0129230eee2144687f740976c00a42, type: 2}
+  normalMaterial: {fileID: 2100000, guid: bf0129230eee2144687f740976c00a42, type: 2}
+  id: 0
+  type: Stone
+--- !u!1001 &279832152656078093
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6107566857749258337}
+    m_TransformParent: {fileID: 279832152378321739}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b05a39593466f8f4b872a79e8f7848db,
         type: 3}
@@ -93,11 +110,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b05a39593466f8f4b872a79e8f7848db,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b05a39593466f8f4b872a79e8f7848db,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b05a39593466f8f4b872a79e8f7848db,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b05a39593466f8f4b872a79e8f7848db,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9ea4edefa81ff0a428c3f6764a9fde35, type: 2}
+      objectReference: {fileID: 2100000, guid: bf0129230eee2144687f740976c00a42, type: 2}
     - target: {fileID: 919132149155446097, guid: b05a39593466f8f4b872a79e8f7848db,
         type: 3}
       propertyPath: m_Name
@@ -105,9 +137,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b05a39593466f8f4b872a79e8f7848db, type: 3}
---- !u!4 &93114816549985682 stripped
+--- !u!4 &317662796125897446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b05a39593466f8f4b872a79e8f7848db,
     type: 3}
-  m_PrefabInstance: {fileID: 486518587313683065}
+  m_PrefabInstance: {fileID: 279832152656078093}
   m_PrefabAsset: {fileID: 0}
