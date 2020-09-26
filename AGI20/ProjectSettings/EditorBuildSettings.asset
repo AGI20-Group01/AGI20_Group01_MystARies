@@ -14,13 +14,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleS/SampleARScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/JosefinTest.unity
     guid: 19f2cff2ec823d34db74772a1519f5cc
   - enabled: 0
     path: Assets/Scenes/Grid Example.unity
     guid: 672e297d226979b4db5fde2f421dd958
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Spirit AR/SpiritControlling.unity
     guid: 4381633bebd52544d9035b06b0abacfa
   m_configObjects: {}

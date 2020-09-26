@@ -6,11 +6,11 @@ using UnityEngine.XR.ARFoundation;
 
 
 
-public class CubeManager : MonoBehaviour
+public class SpiritController : MonoBehaviour
 {
     public ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
-    public GroundTracker ground; 
+    public GroundTracker ground;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class CubeManager : MonoBehaviour
                     if (Input.touchCount == 1)
                     {
                         ground.AddCube(position, 0);
-                            // calculate the rotation to create the object aligned with the face normal:
+                        // calculate the rotation to create the object aligned with the face normal:
                     }
 
                     if (Input.touchCount == 2)
@@ -46,10 +46,10 @@ public class CubeManager : MonoBehaviour
                             ground.RemoveCube(position);
                         }
                     }
-                    
+
                 }
             }
         }
     }
-   
+
 }
