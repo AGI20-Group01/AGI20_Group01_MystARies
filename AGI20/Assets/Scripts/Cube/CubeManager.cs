@@ -9,8 +9,9 @@ using UnityEngine.XR.ARFoundation;
 public class CubeManager : MonoBehaviour
 {
     public ARRaycastManager arRaycastManager;
-    public GameObject cubePrefab;
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
+    public GroundTracker ground; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,46 +28,25 @@ public class CubeManager : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
                 RaycastHit hit;
-                if (Input.touchCount == 1)
+                if (Physics.Raycast(ray, out hit))
                 {
-
-                    if (Physics.Raycast(ray, out hit))
+                    Vector3 position = hit.transform.position + hit.normal;
+                    if (hit.collider.tag == "cube")
                     {
-                        // it's better to find the center of the face like this:
-                        Vector3 position = hit.transform.position + hit.normal;
+                        if (Input.touchCount == 1)
+                        {                            
+                            ground.AddCube(position,1);
+                            // calculate the rotation to create the object aligned with the face normal:
+                        }
 
-                        // calculate the rotation to create the object aligned with the face normal:
-                        //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                        // create the object at the face center, and perpendicular to it:
-                        GameObject Placement = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                        Placement.transform.position = position;
-                        //Placement.transform.rotation = rotation;
-                        CreateCube(position);
-
-
-                        //Instantiate<( PrimitiveType.Cube as GameObject , position , rotation ) as GameObject;
-                    }
-                }
-                if (Input.touchCount == 2)
-                {
-                    if (Physics.Raycast(ray, out hit))
-                    {
-                        if (hit.collider.tag == "cube")
+                        if (Input.touchCount == 2)
                         {
-                            DeleteCube(hit.collider.gameObject);
+                            ground.RemoveCube(position);
                         }
                     }
                 }
             }
         }
     }
-    private void CreateCube(Vector3 position )
-    {
-        Instantiate(cubePrefab, position, Quaternion.identity);
-    }
-
-    private void DeleteCube(GameObject cubeObject)
-    {
-        Destroy(cubeObject);
-    }
+   
 }
