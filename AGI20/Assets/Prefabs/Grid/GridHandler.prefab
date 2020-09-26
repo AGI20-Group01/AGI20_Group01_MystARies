@@ -43,13 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2280b07430ed99845afd5e97490ef9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groudTypes: []
+  groundTypes: []
   theGround: {fileID: 0}
-  x: {fileID: 0}
-  y: {fileID: 0}
-  z: {fileID: 0}
-  type: {fileID: 0}
-  op: {fileID: 0}
 --- !u!1 &4064497896230083486
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +75,7 @@ Transform:
   - {fileID: 4070611572633978326}
   - {fileID: 4070611573916371568}
   - {fileID: 346855869245837432}
+  - {fileID: 2833189567665035047}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -233,3 +229,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7525828adb1fcb342ad48a62d13b6e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8434210093341282723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2833189567665035047}
+  - component: {fileID: 3869877919901850730}
+  m_Layer: 0
+  m_Name: CubeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2833189567665035047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434210093341282723}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6958928998886837748}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3869877919901850730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8434210093341282723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615366bfa363879489763c4d20a79a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arRaycastManager: {fileID: 0}
+  ground: {fileID: 1213267778612387777}
