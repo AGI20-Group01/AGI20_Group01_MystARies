@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 2833189567665035047}
   - component: {fileID: 3869877919901850730}
   m_Layer: 0
-  m_Name: CubeManager
+  m_Name: SpiritController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
