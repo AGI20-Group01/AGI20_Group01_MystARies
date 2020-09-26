@@ -328,6 +328,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6703839596486474388, guid: 03daaf4c9f4c3184cb6f231bab409ada,
         type: 3}
+      propertyPath: groundType.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703839596486474388, guid: 03daaf4c9f4c3184cb6f231bab409ada,
+        type: 3}
       propertyPath: arRaycastManager
       value: 
       objectReference: {fileID: 1420116793}
@@ -430,6 +435,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1213267778612387777, guid: c859c47ee3336d44abc4a4e1b5323688,
+        type: 3}
+      propertyPath: groundTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213267778612387777, guid: c859c47ee3336d44abc4a4e1b5323688,
+        type: 3}
+      propertyPath: groundTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 8094199779078929786, guid: dfa9486fd6d9dec47af2c7e3e49b6503,
+        type: 3}
+    - target: {fileID: 1213267778612387777, guid: c859c47ee3336d44abc4a4e1b5323688,
+        type: 3}
+      propertyPath: theGround
+      value: 
+      objectReference: {fileID: 1665045001}
     - target: {fileID: 3869877919901850730, guid: c859c47ee3336d44abc4a4e1b5323688,
         type: 3}
       propertyPath: arRaycastManager

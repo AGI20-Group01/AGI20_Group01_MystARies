@@ -12,12 +12,7 @@ public class SpiritController : MonoBehaviour
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
     public GroundTracker groundTracker;
     public GameObject cubePrefab;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+   
 
     // Update is called once per frame
     void Update()
@@ -29,47 +24,46 @@ public class SpiritController : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
                 RaycastHit hit;
-                if (Input.touchCount == 1)
+                if (Physics.Raycast(ray, out hit))
                 {
-
-                    if (Physics.Raycast(ray, out hit))
+                    Vector3 hitpos = hit.transform.position;
+                    if (Input.touchCount == 1)
                     {
-                        // it's better to find the center of the face like this:
-                        Vector3 position = hit.transform.position + hit.normal;
+                        Vector3 position = hitpos + hit.normal;
 
-                        // calculate the rotation to create the object aligned with the face normal:
-                        //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                        // create the object at the face center, and perpendicular to it:
-                       // GameObject Placement = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                       // Placement.transform.position = position;
-                        //Placement.transform.rotation = rotation;
-                        CreateCube(position);
+                        groundTracker.AddCube(position, 0);
 
-
-                        //Instantiate<( PrimitiveType.Cube as GameObject , position , rotation ) as GameObject;
+                                    // calculate the rotation to create the object aligned with the face normal:
+                                    //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                                    // create the object at the face center, and perpendicular to it:
+                                    // GameObject Placement = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                    // Placement.transform.position = position;
+                                    //Placement.transform.rotation = rotation;
+                        //CreateCube(position);
                     }
-                }
-                if (Input.touchCount == 2)
-                {
-                    if (Physics.Raycast(ray, out hit))
+                    if (Input.touchCount == 2)
                     {
+
                         if (hit.collider.tag == "interactablecube")
                         {
-                            DeleteCube(hit.collider.gameObject);
+                            groundTracker.RemoveCube(hitpos);
+                            //DeleteCube(hit.collider.gameObject);
                         }
+
                     }
                 }
             }
         }
     }
+    /*
     private void CreateCube(Vector3 position)
     {
         Instantiate(cubePrefab, position, Quaternion.identity);
     }
-
+    */
     private void DeleteCube(GameObject cubeObject)
     {
         Destroy(cubeObject);
     }
-
+    
 }
