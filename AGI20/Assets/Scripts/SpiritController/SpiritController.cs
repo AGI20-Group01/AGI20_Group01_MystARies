@@ -10,7 +10,8 @@ public class SpiritController : MonoBehaviour
 {
     public ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
-    public GroundTracker ground;
+    public GroundTracker groundTracker;
+    public GameObject cubePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -28,28 +29,47 @@ public class SpiritController : MonoBehaviour
             {
                 Ray ray = Camera.main.ScreenPointToRay(touch.position);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (Input.touchCount == 1)
                 {
-                    Vector3 position = hit.transform.position + hit.normal;
 
-
-                    if (Input.touchCount == 1)
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        ground.AddCube(position, 0);
-                        // calculate the rotation to create the object aligned with the face normal:
-                    }
+                        // it's better to find the center of the face like this:
+                        Vector3 position = hit.transform.position + hit.normal;
 
-                    if (Input.touchCount == 2)
+                        // calculate the rotation to create the object aligned with the face normal:
+                        //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                        // create the object at the face center, and perpendicular to it:
+                       // GameObject Placement = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                       // Placement.transform.position = position;
+                        //Placement.transform.rotation = rotation;
+                        CreateCube(position);
+
+
+                        //Instantiate<( PrimitiveType.Cube as GameObject , position , rotation ) as GameObject;
+                    }
+                }
+                if (Input.touchCount == 2)
+                {
+                    if (Physics.Raycast(ray, out hit))
                     {
                         if (hit.collider.tag == "interactablecube")
                         {
-                            ground.RemoveCube(position);
+                            DeleteCube(hit.collider.gameObject);
                         }
                     }
-
                 }
             }
         }
+    }
+    private void CreateCube(Vector3 position)
+    {
+        Instantiate(cubePrefab, position, Quaternion.identity);
+    }
+
+    private void DeleteCube(GameObject cubeObject)
+    {
+        Destroy(cubeObject);
     }
 
 }

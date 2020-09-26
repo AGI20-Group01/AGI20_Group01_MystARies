@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8094199779078929781}
   - component: {fileID: 8094199779078929780}
+  - component: {fileID: 5378587396239253805}
   m_Layer: 0
   m_Name: GrassGround
   m_TagString: interactablecube
@@ -126,3 +127,16 @@ MonoBehaviour:
   underMaterial: {fileID: 2100000, guid: ff89ff6043041f844a46bccb73e60ee0, type: 2}
   normalMaterial: {fileID: 2100000, guid: 9ea4edefa81ff0a428c3f6764a9fde35, type: 2}
   id: 0
+--- !u!65 &5378587396239253805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094199779078929786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
