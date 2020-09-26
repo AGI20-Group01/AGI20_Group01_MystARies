@@ -8,16 +8,17 @@ public class GroundTracker : MonoBehaviour
     // Start is called before the first frame update
     public static Dictionary<Vector3, GameObject> ground = new Dictionary<Vector3, GameObject>();
     private Grid grid;
-    public GameObject[] groudTypes;
+    public GameObject[] groundTypes;
     public Transform theGround;
 
 
     /*public Slider x;
     public Slider y;
     public Slider z;
-    */
+    
     public Slider type;
     public Slider op;
+    */
 
 
     void Start() {
@@ -54,7 +55,7 @@ public class GroundTracker : MonoBehaviour
         if (ground.ContainsKey(gridPos)) {
             return;
         }
-        GameObject go = Instantiate(groudTypes[type], gridPos, Quaternion.identity);
+        GameObject go = Instantiate(groundTypes[type], gridPos, Quaternion.identity);
         updateCubesSurrounding(go, gridPos);
         ground.Add(gridPos, go);
     }

@@ -31,19 +31,22 @@ public class CubeManager : MonoBehaviour
                 if (Physics.Raycast(ray, out hit))
                 {
                     Vector3 position = hit.transform.position + hit.normal;
-                    if (hit.collider.tag == "cube")
-                    {
-                        if (Input.touchCount == 1)
-                        {                            
-                            ground.AddCube(position,1);
-                            // calculate the rotation to create the object aligned with the face normal:
-                        }
 
-                        if (Input.touchCount == 2)
+
+                    if (Input.touchCount == 1)
+                    {
+                        ground.AddCube(position, 0);
+                            // calculate the rotation to create the object aligned with the face normal:
+                    }
+
+                    if (Input.touchCount == 2)
+                    {
+                        if (hit.collider.tag == "interactablecube")
                         {
                             ground.RemoveCube(position);
                         }
                     }
+                    
                 }
             }
         }
