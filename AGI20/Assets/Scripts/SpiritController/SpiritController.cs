@@ -11,7 +11,7 @@ public class SpiritController : MonoBehaviour
     public ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
     public GroundTracker groundTracker;
-    public GameObject cubePrefab;
+    //public GameObject cubePrefab;
    
 
     // Update is called once per frame
@@ -60,10 +60,11 @@ public class SpiritController : MonoBehaviour
     {
         Instantiate(cubePrefab, position, Quaternion.identity);
     }
-    */
+    
     private void DeleteCube(GameObject cubeObject)
     {
         Destroy(cubeObject);
     }
+    */
     
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 279832152378321739}
   - component: {fileID: 279832152378321740}
+  - component: {fileID: 171857854910992471}
   m_Layer: 0
   m_Name: StoneGround
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279832152378321738}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2659826, y: -0.53158474, z: 0.3687514}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8958288191212726801}
@@ -47,6 +48,19 @@ MonoBehaviour:
   underMaterial: {fileID: 2100000, guid: bf0129230eee2144687f740976c00a42, type: 2}
   normalMaterial: {fileID: 2100000, guid: bf0129230eee2144687f740976c00a42, type: 2}
   id: 0
+--- !u!65 &171857854910992471
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279832152378321738}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3313659074293230204
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +87,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3313659074293230204}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 50, y: 50.00002, z: 50.00002}
   m_Children: []
   m_Father: {fileID: 279832152378321739}
