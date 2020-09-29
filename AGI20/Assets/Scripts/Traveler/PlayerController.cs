@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 2.0f;
     public bool isGrounded;
     Rigidbody rb;
+    [SerializeField]
+    private NetworkClient networkClient;
+
+    private Vector3 snetPos;
 
 
     // Use this for initialization
@@ -25,6 +29,7 @@ public class PlayerController : MonoBehaviour
     void OnCollisionStay(){
         isGrounded = true;
     }
+
 
 
     // Update is called once per frame
@@ -51,7 +56,10 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Running", false);
         }
-        
+
+        if (networkClient != null)
+            networkClient.sendMoveTraveler(transform.position);
+            
     }
 }
 
