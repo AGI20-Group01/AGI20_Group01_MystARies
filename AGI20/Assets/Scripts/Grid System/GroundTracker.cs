@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
 
 public class GroundTracker : MonoBehaviour
 {
@@ -12,9 +10,6 @@ public class GroundTracker : MonoBehaviour
     private Grid grid;
     public GameObject[] groundTypes;
     public Transform theGround;
-
-    // AR Stuff
-    private ARReferencePointManager arReferencePointManager;
 
     /*public Slider x;
     public Slider y;
@@ -60,12 +55,6 @@ public class GroundTracker : MonoBehaviour
             return;
         }
         GameObject go = Instantiate(groundTypes[type], gridPos, Quaternion.identity);
-
-        // Add this as a reference point for XR
-        Vector3 posisiton = go.transform.position;
-        Quaternion rot = go.transform.rotation;
-        Pose pose = new Pose(pos, rot);
-        ARReferencePoint refPoint = arReferencePointManager.AddReferencePoint(pose);
 
         updateCubesSurrounding(go, gridPos);
         ground.Add(gridPos, go);
