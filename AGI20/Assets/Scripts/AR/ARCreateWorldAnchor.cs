@@ -25,7 +25,7 @@ public class ARCreateWorldAnchor : MonoBehaviour
     private List<ARReferencePoint> referencePoints = new List<ARReferencePoint>();
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    private bool worldPlaced = false;
+    public bool worldPlaced = false;
 
     private void Start()
     {
@@ -39,17 +39,20 @@ public class ARCreateWorldAnchor : MonoBehaviour
 
     private void Update()
     {
-        if (worldPlaced)
+        if (worldPlaced) { 
             return;
+        }
 
         if (Input.touchCount == 0)
+        {
             return;
+        }
 
         Touch touch = Input.GetTouch(0);
-
+        /*
         if (touch.phase != TouchPhase.Began) // make sure we only do this for first touch
-            return;
-
+        { return; }
+        */
         if (arRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinBounds))
         {
             Pose hitPose = hits[0].pose;
@@ -68,7 +71,7 @@ public class ARCreateWorldAnchor : MonoBehaviour
                 referencePoints.Add(referencePoint);
                 GameObject obj1 = Instantiate(groundObject, hitPose.position, hitPose.rotation);
                 GameObject obj2 = Instantiate(playerObject, hitPose.position, hitPose.rotation);
-                GameObject obj3 = Instantiate(spiritObject, hitPose.position, hitPose.rotation);
+                spiritObject.SetActive(true);
                 worldPlaced = true;
             }
         }
