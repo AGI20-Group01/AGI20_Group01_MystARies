@@ -65,6 +65,7 @@ public class GroundTracker : MonoBehaviour
             return;
         }
         GameObject go = Instantiate(groundTypes[type], gridPos, Quaternion.identity);
+
         updateCubesSurrounding(go, gridPos);
         ground.Add(gridPos, go);
     }
