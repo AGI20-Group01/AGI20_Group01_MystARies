@@ -11,25 +11,17 @@ public class NetworkClient : SocketIOComponent
     //private Dictionary<string, GameObject> serverObjects;
     private string id;
     [SerializeField]
-    private string player = "Spirit";
-    [SerializeField]
     private GroundTracker groundTracker;
     [SerializeField]
     private Transform traveler;
-    private Vector3 sentPos;
+
 
     public override void Start()
     {
         base.Start();
-        init();
         setupEvents();
     }
 
-    private void init() {
-        //serverObjects = new Dictionary<string, GameObject>();
-    }
-
-    // Update is called once per frame
     public override void Update()
     {
         base.Update();
@@ -46,23 +38,31 @@ public class NetworkClient : SocketIOComponent
         });
 
         On("AddCube", (E) => {
-            string id = E.data["id"].ToString().Replace("\"", "");
+            //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
             groundTracker.AddCube(pos, 0);
 
         });
 
          On("RemoveCube", (E) => {
-            string id = E.data["id"].ToString().Replace("\"", "");
+            //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
             groundTracker.RemoveCube(pos);
 
         });
 
         On("MoveTraveler", (E) => {
-            string id = E.data["id"].ToString().Replace("\"", "");
+            //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
             traveler.position = pos / 1000;
+        });
+
+
+        On("RotateTraveler", (E) => {
+            //string id = E.data["id"].ToString().Replace("\"", "");
+            Vector3 rot = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
+            Debug.Log(rot);
+            traveler.rotation = Quaternion.Euler(rot / 1000);
         });
     }
 
@@ -76,34 +76,11 @@ public class NetworkClient : SocketIOComponent
     }
 
     public void sendMoveTraveler(Vector3 pos) {
-        float x = Mathf.Round(pos.x * 1000) ;
-        float y = Mathf.Round(pos.y * 1000) ;
-        float z = Mathf.Round(pos.z * 1000) ;
-
-        Vector3 newPos = new Vector3(x,y,z);
-        if (newPos == sentPos && player != "Spirit") {
-            return;
-        }
-        sentPos = newPos;
-
-        Position thePos = new Position();
-        thePos.x = x;
-        thePos.y = y;
-        thePos.z = z;
-        thePos.id = id;
-
-        //Debug.Log("move: " + pos);
-        Emit("MoveTraveler", new JSONObject( "{\"id\":\"" + id + "\",\"x\":" +  x + ",\"y\":" +  y + ",\"z\":" +  z + "}" ));
-        //Emit("MoveTraveler", new JSONObject(JsonUtility.ToJson(thePos)));
-        //Emit("MoveTraveler", new JSONObject( "{\"id\": \"hej\",\"x\": 1,\"y\": 1,\"z\": 1}" ));
+        Emit("MoveTraveler", new JSONObject( "{\"id\":\"" + id + "\",\"x\":" +  pos.x + ",\"y\":" +  pos.y + ",\"z\":" +  pos.z + "}" ));
     }
 
-    [System.Serializable]
-    class Position {
-        public string id;
-        public float x;
-        public float y;
-        public float z;
-
+    public void sendRotate(Vector3 rot) {
+        Emit("RotateTraveler", new JSONObject( "{\"id\":\"" + id + "\",\"x\":" +  rot.x + ",\"y\":" +  rot.y + ",\"z\":" +  rot.z + "}" ));
     }
+
 }

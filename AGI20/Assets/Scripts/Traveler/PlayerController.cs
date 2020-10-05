@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private NetworkClient networkClient;
 
-    private Vector3 snetPos;
-
 
     // Use this for initialization
     void Start () {
@@ -36,7 +34,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //Jump
-         if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
 
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
@@ -57,9 +55,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Running", false);
         }
 
-        if (networkClient != null)
-            networkClient.sendMoveTraveler(transform.position);
-            
+       
     }
 }
 

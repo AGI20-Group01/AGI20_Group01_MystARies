@@ -1042,6 +1042,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1600912461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3453525484124352819, guid: fdd1d6166f3e84d459fecdb49190b331,
+    type: 3}
+  m_PrefabInstance: {fileID: 1838023982}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1600912469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600912461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d0108a49b8bdb42bd054ed4f729684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimatTime: 3
+  controling: 1
+  networkClient: {fileID: 1735768283}
 --- !u!1001 &1608323422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1226,13 +1247,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d7b3e8cd19c114eb203d174df80476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://192.168.1.206:5000/socket.io/?EIO=4&transport=websocket
+  url: ws://038ffc05d4df.ngrok.io/socket.io/?EIO=4&transport=websocket
   autoConnect: 1
   reconnectDelay: 5
   ackExpirationTime: 1800
   pingInterval: 25
   pingTimeout: 60
-  player: t
   groundTracker: {fileID: 762256816}
   traveler: {fileID: 283060981}
 --- !u!4 &1735768284
@@ -1441,11 +1461,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player good movements
       objectReference: {fileID: 0}
+    - target: {fileID: 3453525484124352826, guid: fdd1d6166f3e84d459fecdb49190b331,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571971482101378108, guid: fdd1d6166f3e84d459fecdb49190b331,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571971482101378108, guid: fdd1d6166f3e84d459fecdb49190b331,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8919251803169574598, guid: fdd1d6166f3e84d459fecdb49190b331,
         type: 3}
       propertyPath: networkClient
       value: 
       objectReference: {fileID: 1735768283}
+    - target: {fileID: 8919251803169574598, guid: fdd1d6166f3e84d459fecdb49190b331,
+        type: 3}
+      propertyPath: controling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919251803169574598, guid: fdd1d6166f3e84d459fecdb49190b331,
+        type: 3}
+      propertyPath: aimatTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8919251803169574598, guid: fdd1d6166f3e84d459fecdb49190b331,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdd1d6166f3e84d459fecdb49190b331, type: 3}
 --- !u!1001 &1883634767
