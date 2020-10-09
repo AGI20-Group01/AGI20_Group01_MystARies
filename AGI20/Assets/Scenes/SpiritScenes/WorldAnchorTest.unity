@@ -386,6 +386,16 @@ PrefabInstance:
       propertyPath: groundTracker
       value: 
       objectReference: {fileID: 887780599}
+    - target: {fileID: 6703839596486474388, guid: 03daaf4c9f4c3184cb6f231bab409ada,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6703839596486474388, guid: 03daaf4c9f4c3184cb6f231bab409ada,
+        type: 3}
+      propertyPath: ARCreateWorldAnchor
+      value: 
+      objectReference: {fileID: 935764685}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03daaf4c9f4c3184cb6f231bab409ada, type: 3}
 --- !u!1 &708693550 stripped
@@ -647,6 +657,7 @@ MonoBehaviour:
   playerObject: {fileID: 3847264935966558865, guid: 162a991ae30c72743b0c67465d33ca15,
     type: 3}
   spiritObject: {fileID: 708693550}
+  worldPlaced: 0
 --- !u!114 &935764686
 MonoBehaviour:
   m_ObjectHideFlags: 0

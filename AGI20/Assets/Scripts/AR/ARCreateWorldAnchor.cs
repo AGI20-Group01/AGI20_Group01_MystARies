@@ -25,7 +25,7 @@ public class ARCreateWorldAnchor : MonoBehaviour
     private List<ARReferencePoint> referencePoints = new List<ARReferencePoint>();
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    public bool worldPlaced = false;
+    private bool worldPlaced = false;
 
     private void Start()
     {
@@ -75,5 +75,10 @@ public class ARCreateWorldAnchor : MonoBehaviour
                 worldPlaced = true;
             }
         }
+    }
+
+    public void PlaceAnchor()
+    {
+
     }
 }
