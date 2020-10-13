@@ -39,7 +39,9 @@ public class ARCreateWorldAnchor : MonoBehaviour
 
     private void Update()
     {
-        if (worldPlaced) { 
+   
+       /* if (worldPlaced)
+        {
             return;
         }
 
@@ -47,12 +49,16 @@ public class ARCreateWorldAnchor : MonoBehaviour
         {
             return;
         }
-
+        
         Touch touch = Input.GetTouch(0);
+
+        */
         /*
         if (touch.phase != TouchPhase.Began) // make sure we only do this for first touch
         { return; }
         */
+
+        /*
         if (arRaycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinBounds))
         {
             Pose hitPose = hits[0].pose;
@@ -75,10 +81,23 @@ public class ARCreateWorldAnchor : MonoBehaviour
                 worldPlaced = true;
             }
         }
+        */
     }
-
-    public void PlaceAnchor()
+    /*
+    public bool InstantiateAnchor(Pose position)
     {
+        ARReferencePoint referencePoint = arReferencePointManager.AddReferencePoint(position);
 
+        if (referencePoint != null)
+        {
+            referencePoints.Add(referencePoint);
+            GameObject obj1 = Instantiate(groundObject, position.position, position.rotation);
+            GameObject obj2 = Instantiate(playerObject, position.position, position.rotation);
+            spiritObject.SetActive(true);
+            worldPlaced = true;
+            return false;
+        }
+        
     }
+    */
 }

@@ -23,10 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SpiritScenes/SpiritScene.unity
     guid: 4381633bebd52544d9035b06b0abacfa
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/SpiritScenes/WorldAnchorTest.unity
     guid: f96ca480640e96b4f8d20d13e6b685a7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CurrentDev/JosefinTestScene.unity
     guid: eb96df714db559a4b85b980cbcfc1ad2
   m_configObjects: {}
