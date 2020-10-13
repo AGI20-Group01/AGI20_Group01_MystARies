@@ -9,11 +9,14 @@ public class TravelerNetworking : MonoBehaviour
 
     private Vector3 prePos = new Vector3(0,0,0);
     private Vector3 preRot = new Vector3(0,0,0);
+    private Vector3 targetPos = new Vector3(0,0,0);
+    private Vector3 targetRot = new Vector3(0,0,0);
 
     public int aimatTime = 10;
     private int time = 0; 
 
     public bool controling = false;
+    public float lerpSpeed = 15;
 
 
     [SerializeField]
@@ -23,13 +26,29 @@ public class TravelerNetworking : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();   
+        targetPos = transform.position;
+        targetRot = transform.eulerAngles;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (!controling) {
-            Vector3 newPos = transform.position;
+
+            Vector3 pos = transform.position;
+            Vector3 nextPos = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+            transform.position = nextPos;   //Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+            if (Mathf.Abs(pos.x - nextPos.x) > 0.00001f || Mathf.Abs(pos.z - nextPos.z) > 0.00001f) {
+                anim.SetBool("Running", true);
+            } else {
+                anim.SetBool("Running", false);
+            }
+
+            Vector3 rot = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(Vector3.Lerp(rot, targetRot, lerpSpeed * Time.deltaTime));
+
+            /*Vector3 newPos = transform.position;
+
             if (Mathf.Round(prePos.z * 1000) / 1000 != Mathf.Round(newPos.z * 1000) / 1000 || Mathf.Round(prePos.x * 1000) / 1000 != Mathf.Round(newPos.x * 1000) / 1000 || time >= 0) {
                 anim.SetBool("Running", true);
                 if (Mathf.Round(prePos.z * 1000) / 1000 != Mathf.Round(newPos.z * 1000) / 1000 || Mathf.Round(prePos.x * 1000) / 1000 != Mathf.Round(newPos.x * 1000) / 1000) {
@@ -40,7 +59,7 @@ public class TravelerNetworking : MonoBehaviour
             } else {
                 anim.SetBool("Running", false);
             }
-            prePos = transform.position;
+            prePos = transform.position;*/
         } 
         
         
@@ -67,5 +86,14 @@ public class TravelerNetworking : MonoBehaviour
             preRot = newRot;
         }
         
+    }
+
+
+    public void setTargetPos(Vector3 pos) {
+        targetPos = pos;
+    }
+
+    public void setTargetRot(Vector3 rot) {
+        targetRot = rot;
     }
 }

@@ -14,6 +14,8 @@ public class NetworkClient : SocketIOComponent
     private GroundTracker groundTracker;
     [SerializeField]
     private Transform traveler;
+    [SerializeField]
+    private TravelerNetworking travelerNetworking;
 
 
     public override void Start()
@@ -54,15 +56,17 @@ public class NetworkClient : SocketIOComponent
         On("MoveTraveler", (E) => {
             //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
-            traveler.position = pos / 1000;
+            //traveler.position = pos / 1000;
+            travelerNetworking.setTargetPos(pos / 1000);
         });
 
 
         On("RotateTraveler", (E) => {
             //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 rot = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
-            Debug.Log(rot);
-            traveler.rotation = Quaternion.Euler(rot / 1000);
+            //Debug.Log(rot);
+            //traveler.rotation = Quaternion.Euler(rot / 1000); 
+            travelerNetworking.setTargetRot(rot / 1000);
         });
     }
 
