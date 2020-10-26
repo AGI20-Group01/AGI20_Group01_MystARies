@@ -537,7 +537,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ARCreateWorldAnchor
       value: 
-      objectReference: {fileID: 935764685}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03daaf4c9f4c3184cb6f231bab409ada, type: 3}
 --- !u!1 &708693550 stripped
@@ -712,7 +712,6 @@ GameObject:
   - component: {fileID: 935764680}
   - component: {fileID: 935764684}
   - component: {fileID: 935764686}
-  - component: {fileID: 935764685}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -787,23 +786,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ReferencePointPrefab: {fileID: 0}
---- !u!114 &935764685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935764679}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d7417ff8ca9ac94993ecc79d8648bb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundObject: {fileID: 8363817011553379536, guid: c6f97a8b5f65f6f40932165dc6ace295,
-    type: 3}
-  playerObject: {fileID: 3847264935966558865, guid: 162a991ae30c72743b0c67465d33ca15,
-    type: 3}
-  spiritObject: {fileID: 708693550}
 --- !u!114 &935764686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1100,7 +1082,7 @@ PrefabInstance:
         type: 3}
       propertyPath: WorldAnchor
       value: 
-      objectReference: {fileID: 935764685}
+      objectReference: {fileID: 0}
     - target: {fileID: 7850016371187945365, guid: b281a68f29cf2b3458fd2774f217e8be,
         type: 3}
       propertyPath: groundObject

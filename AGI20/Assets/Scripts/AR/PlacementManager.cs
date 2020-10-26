@@ -31,7 +31,6 @@ public class PlacementManager : MonoBehaviour
     public ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
     public GameObject PointerObj;
-    public ARCreateWorldAnchor WorldAnchor;
     private bool PlacingState;
 
     // Start is called before the first frame update
@@ -44,7 +43,6 @@ public class PlacementManager : MonoBehaviour
         groundTracker = FindObjectOfType<GroundTracker>();
 
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
-        WorldAnchor = FindObjectOfType<ARCreateWorldAnchor>();
         PointerObj = transform.GetChild(0).gameObject;
         PlacingState = true;
 
@@ -75,7 +73,7 @@ public class PlacementManager : MonoBehaviour
             {
                 //PlacingState = WorldAnchor.InstantiateAnchor(arRaycastHits[0].pose);
                 Pose hitPose = hits[0].pose;
-                hitPose.position = grid.GetNearestPointOnGrid(hitPose.position);
+                hitPose.position = grid.GetNearestPointOnGrid(PointerObj.transform.position);
                 hitPose.rotation = Quaternion.Euler(0, 0, 0);
                 ARReferencePoint referencePoint = arReferencePointManager.AddReferencePoint(hitPose);
 
