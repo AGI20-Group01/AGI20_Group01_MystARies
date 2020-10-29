@@ -15,7 +15,7 @@ public class SpiritController : MonoBehaviour
     //public GameObject cubePrefab;
    void Start()
     {
-        
+       arRaycastManager = FindObjectOfType<ARRaycastManager>();
     }
     void OnEnable() {
         /*if (ARCreateWorldAnchor.worldPlaced == true)

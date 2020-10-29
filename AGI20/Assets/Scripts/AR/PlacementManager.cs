@@ -14,17 +14,13 @@ using UnityEngine.XR.ARSubsystems;
 public class PlacementManager : MonoBehaviour
 {
     // from ARCreateWorldAnchor
-    public GameObject groundObject;
-    public GameObject playerObject;
-    public GameObject spiritObject;
+    public GameObject levelPrefab;
+    private GroundTracker groundTracker;
 
     private ARReferencePointManager arReferencePointManager;
     private ARPointCloudManager arPointCloudManager;
     private ARPlaneManager arPlaneManager;
-    private Grid grid;
     private List<ARReferencePoint> referencePoints = new List<ARReferencePoint>();
-    public GameObject ground;
-    public GroundTracker groundTracker;
 
 
     // Placement Manager 
@@ -36,11 +32,9 @@ public class PlacementManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grid = FindObjectOfType<Grid>();
         arReferencePointManager = FindObjectOfType<ARReferencePointManager>();
         arPointCloudManager = FindObjectOfType<ARPointCloudManager>();
         arPlaneManager = FindObjectOfType<ARPlaneManager>();
-        groundTracker = FindObjectOfType<GroundTracker>();
 
         arRaycastManager = FindObjectOfType<ARRaycastManager>();
         PointerObj = transform.GetChild(0).gameObject;
@@ -73,18 +67,15 @@ public class PlacementManager : MonoBehaviour
             {
                 //PlacingState = WorldAnchor.InstantiateAnchor(arRaycastHits[0].pose);
                 Pose hitPose = hits[0].pose;
-                hitPose.position = grid.GetNearestPointOnGrid(PointerObj.transform.position);
                 hitPose.rotation = Quaternion.Euler(0, 0, 0);
                 ARReferencePoint referencePoint = arReferencePointManager.AddReferencePoint(hitPose);
 
                 if (referencePoint != null)
                 {
                     referencePoints.Add(referencePoint);
-                    GameObject obj1 = Instantiate(groundObject, hitPose.position, hitPose.rotation);
-                    obj1.transform.SetParent(ground.transform, false);
+                    GameObject obj1 = Instantiate(levelPrefab, hitPose.position, hitPose.rotation);
+                    groundTracker = FindObjectOfType <GroundTracker>();
                     groundTracker.snapAllOnjects();
-                    GameObject obj2 = Instantiate(playerObject, hitPose.position, hitPose.rotation);
-                    spiritObject.SetActive(true);
                     PlacingState = false;
                     PointerObj.SetActive(false);
 
