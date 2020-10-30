@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15762f73bfd17e2468106a210c566653, type: 3}
+  m_Name: Grass
+  m_EditorClassIdentifier: 
+  sumOnTop: {fileID: 2800000, guid: c53c6890c427acc458f4a2e516f5aa75, type: 3}
+  autOnTop: {fileID: 2800000, guid: a21687a9ce649d546966206541b85ea4, type: 3}
+  witOnTop: {fileID: 2800000, guid: 10ea4af11df902a4bb98120c7b3be785, type: 3}
+  sprOnTop: {fileID: 2800000, guid: 611873a8b838a1a4694eaf8e6975f0a6, type: 3}
+  sumOnBottom: {fileID: 2800000, guid: 16021d10838940343b58aed5001bbc51, type: 3}
+  autOnBottom: {fileID: 2800000, guid: 4f4a81a817e23a140b6ca19a1d3ce24f, type: 3}
+  witOnBottom: {fileID: 2800000, guid: b1257929e5ac67747b605706c2625627, type: 3}
+  sprOnBottom: {fileID: 2800000, guid: 9f7e339a99c004349a4b174a4c4c24e6, type: 3}
+  noise: {fileID: 0}
+  normal: {fileID: 0}
+  ShadingCells: 3
+  specualer: 72.5

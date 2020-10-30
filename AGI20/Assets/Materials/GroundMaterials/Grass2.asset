@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed9dc41b970703140920947d2c25933c, type: 3}
+  m_Name: Grass2
+  m_EditorClassIdentifier: 
+  sumOnTop: {fileID: 2800000, guid: 0333286767d94ad4d9806e593c67a17b, type: 3}
+  autOnTop: {fileID: 2800000, guid: a645c984f67d18d44bef5be2b3b9e913, type: 3}
+  witOnTop: {fileID: 2800000, guid: d9e2a5f434789fd49a7c7de3f503250e, type: 3}
+  sprOnTop: {fileID: 2800000, guid: 21f00f587578be344999d3aeeaec0e49, type: 3}
+  sumOnBottom: {fileID: 2800000, guid: 04ef759772ed6d0429b14e7c04fa0062, type: 3}
+  autOnBottom: {fileID: 2800000, guid: dcaab9a294cbb0e45b6cdf18b3816b8b, type: 3}
+  witOnBottom: {fileID: 2800000, guid: 04ef759772ed6d0429b14e7c04fa0062, type: 3}
+  sprOnBottom: {fileID: 2800000, guid: dcaab9a294cbb0e45b6cdf18b3816b8b, type: 3}
+  noise: {fileID: 0}
+  normal: {fileID: 0}
+  topCol1: {r: 0.18136172, g: 0.5471698, b: 0.16260235, a: 1}
+  topCol2: {r: 0.9811321, g: 0.63761026, b: 0.39337844, a: 1}
+  topCol3: {r: 1, g: 1, b: 1, a: 1}
+  topCol4: {r: 1, g: 0.7028302, b: 0.8925335, a: 1}
+  sideCol1: {r: 0.63529414, g: 0.34117648, b: 0.18431373, a: 1}
+  sideCol2: {r: 0.427451, g: 0.18431373, b: 0.11764707, a: 1}
+  ShadingCells: 3
+  specualer: 36.6

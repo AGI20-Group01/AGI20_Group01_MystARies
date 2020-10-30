@@ -47,14 +47,38 @@ public class GroundTracker : MonoBehaviour
 
     private void updateCubesSurrounding(GameObject go, Vector3 pos, Dictionary<Vector3, GameObject> ground) {
         GroundCube gc = go.GetComponent<GroundCube>();
+
+
+        gc.SetUnder(false, 0);
+        gc.SetUnder(false, 1);
+        gc.SetUnder(false, 2);
+        gc.SetUnder(false, 3);
+
         if (ground.ContainsKey(pos + new Vector3(0,1,0))) {
-            gc.SetUnder(true);
-        } else {
-            gc.SetUnder(false);
+            gc.SetUnder(true, 0);
         }
+        if (ground.ContainsKey(pos + new Vector3(0,-1,0))) {
+            gc.SetUnder(true, 2);
+        }
+        if (ground.ContainsKey(pos + new Vector3(1,0,0))) {
+            gc.SetUnder(true, 1);
+        }
+        if (ground.ContainsKey(pos + new Vector3(-1,0,0))) {
+            gc.SetUnder(true, 3);
+        } 
+
 
         if (ground.ContainsKey(pos + new Vector3(0,-1,0))) {
-            ground[(pos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(true);
+            ground[(pos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(true, 0);
+        }
+        if (ground.ContainsKey(pos + new Vector3(0,1,0))) {
+            ground[(pos + new Vector3(0,1,0))].GetComponent<GroundCube>().SetUnder(true, 2);
+        }
+        if (ground.ContainsKey(pos + new Vector3(-1,0,0))) {
+            ground[(pos + new Vector3(-1,0,0))].GetComponent<GroundCube>().SetUnder(true, 1);
+        }
+        if (ground.ContainsKey(pos + new Vector3(1,0,0))) {
+            ground[(pos + new Vector3(1,0,0))].GetComponent<GroundCube>().SetUnder(true, 3);
         }
     }
 
@@ -64,9 +88,10 @@ public class GroundTracker : MonoBehaviour
         if (ground.ContainsKey(gridPos)) {
             return;
         }
-        GameObject go = Instantiate(groundTypes[type], gridPos, Quaternion.identity);
-        updateCubesSurrounding(go, gridPos);
-        ground.Add(gridPos, go);
+        GameObject go = Instantiate(groundTypes[type], gridPos, theGround.rotation);
+        updateCubesSurrounding(go, grid.GetNearestPointOnGrid(Quaternion.Inverse(transform.rotation) * gridPos));
+        ground.Add(grid.GetNearestPointOnGrid(Quaternion.Inverse(transform.rotation) * gridPos), go);
+        go.transform.SetParent(theGround);
     }
 
     public void RemoveCube(Vector3 pos) {
@@ -74,11 +99,22 @@ public class GroundTracker : MonoBehaviour
 
         if (ground.ContainsKey(gridPos)) {
             Destroy(ground[gridPos]);
-            ground.Remove(gridPos);
-            if (ground.ContainsKey(gridPos + new Vector3(0,-1,0)))
-                ground[(gridPos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(false);
+
+            ground.Remove(transform.rotation * gridPos);
+
+            if (ground.ContainsKey(pos + new Vector3(0,-1,0))) {
+                ground[(pos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(false, 0);
+            }
+            if (ground.ContainsKey(pos + new Vector3(0,1,0))) {
+                ground[(pos + new Vector3(0,1,0))].GetComponent<GroundCube>().SetUnder(false, 2);
+            }
+            if (ground.ContainsKey(pos + new Vector3(-1,0,0))) {
+                ground[(pos + new Vector3(-1,0,0))].GetComponent<GroundCube>().SetUnder(false, 1);
+            }
+            if (ground.ContainsKey(pos + new Vector3(1,0,0))) {
+                ground[(pos + new Vector3(1,0,0))].GetComponent<GroundCube>().SetUnder(false, 3);
+            }
         }
     }
 
 }
-
