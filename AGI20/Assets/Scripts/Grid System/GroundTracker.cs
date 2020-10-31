@@ -9,11 +9,10 @@ public class GroundTracker : MonoBehaviour
     public GameObject[] groundTypes;
     public Transform theGround;
 
-
-
     void Start() {
         grid = FindObjectOfType<Grid>();
         snapAllOnjects(theGround, ground);
+        
     }
 
     public void snapAllOnjects() { 
