@@ -14,7 +14,6 @@ public class GroundCube : MonoBehaviour
 
     private bool underGroundCube = false;
 
-
     private MeshRenderer meshRenderer = null;
     // Start is called before the first frame update
     void Start()
