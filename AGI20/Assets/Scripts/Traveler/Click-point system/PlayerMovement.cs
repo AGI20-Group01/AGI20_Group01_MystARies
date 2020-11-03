@@ -5,15 +5,17 @@ using UnityEngine.AI;
 
 public class PlayerMovement : MonoBehaviour
 {
-   NavMeshAgent agent;
+    NavMeshAgent agent;
 
-   void Start() 
+    void Start() 
    {
        agent = GetComponent<NavMeshAgent> ();
+
    }
 
    void Update()
    {
+        /*
        if(Input.GetMouseButtonDown(0))
        {
            RaycastHit hit;
@@ -23,5 +25,14 @@ public class PlayerMovement : MonoBehaviour
                agent.SetDestination(hit.point);
            }
        }
+       */
    }
+
+    public void MoveCharacter(Vector3 pos)
+    {
+        agent.SetDestination(pos);
+
+    }
 }
+
+

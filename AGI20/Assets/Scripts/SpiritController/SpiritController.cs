@@ -11,17 +11,10 @@ public class SpiritController : MonoBehaviour
     public ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
     public GroundTracker groundTracker;
-    //public ARCreateWorldAnchor ARCreateWorldAnchor;
-    //public GameObject cubePrefab;
+
    void Start()
     {
        arRaycastManager = FindObjectOfType<ARRaycastManager>();
-    }
-    void OnEnable() {
-        /*if (ARCreateWorldAnchor.worldPlaced == true)
-        {
-            ARCreateWorldAnchor.enabled = false;
-        }*/
     }
 
     // Update is called once per frame
