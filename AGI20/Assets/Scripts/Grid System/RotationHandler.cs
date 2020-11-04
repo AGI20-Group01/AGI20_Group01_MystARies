@@ -31,14 +31,6 @@ public class RotationHandler : MonoBehaviour
         {
             setTargetRot(new Vector3(0,0,-1));
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            setTargetRot(new Vector3(1,0,0));
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            setTargetRot(new Vector3(-1,0,0));
-        }
 
     }
 

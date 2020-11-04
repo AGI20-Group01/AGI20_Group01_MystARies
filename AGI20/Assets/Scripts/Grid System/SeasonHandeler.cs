@@ -19,7 +19,7 @@ public class SeasonHandeler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
         float rot = transform.eulerAngles.z % 360;
 
         if (Mathf.Round(rot) % 90 == 0 && time > 0) {
@@ -49,7 +49,8 @@ public class SeasonHandeler : MonoBehaviour
             Shader.SetGlobalFloat( "_Season1_t", 0);
             Shader.SetGlobalFloat( "_Season2_t", 1-t);
         }
-    }
 
+
+    }
     
 }

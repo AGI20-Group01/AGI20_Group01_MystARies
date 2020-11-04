@@ -77,7 +77,6 @@
 
             uniform float _Season1_t;
             uniform float _Season2_t;
-
             
             sampler2D _Main1Tex;
             sampler2D _Main2Tex;
@@ -143,7 +142,7 @@
                 
                 // side col
                 float dist = length(i.worldPos.xy);
-                float t = (1 + sign(sin(dist * 23))) / 2;
+                float t = (1 + sign(sin(dist * 20.0))) / 2.0;
 
                 col += colMasks.g * (t * _sideColor1 + (1-t) * _sideColor2);
 

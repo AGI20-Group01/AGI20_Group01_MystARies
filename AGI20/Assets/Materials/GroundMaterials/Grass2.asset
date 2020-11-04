@@ -29,4 +29,4 @@ MonoBehaviour:
   sideCol1: {r: 0.63529414, g: 0.34117648, b: 0.18431373, a: 1}
   sideCol2: {r: 0.427451, g: 0.18431373, b: 0.11764707, a: 1}
   ShadingCells: 3
-  specualer: 36.6
+  specualer: 100

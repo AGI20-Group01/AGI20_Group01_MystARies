@@ -13,7 +13,7 @@ public class Grid : MonoBehaviour
     {
         //position = transform.rotation * position;
         position -= transform.position;
-        //position = transform.rotation * position;
+        position = Quaternion.Inverse(transform.rotation) * position;
         //position += new Vector3(5,5,5);
 
 
@@ -32,6 +32,23 @@ public class Grid : MonoBehaviour
         result = transform.rotation * result;
         result += transform.position;
 
+        return result;
+    }
+
+    public Vector3 GetGridCellIndex(Vector3 position) {
+        position -= transform.position;
+        position = Quaternion.Inverse(transform.rotation) * position;
+
+        int xCount = Mathf.RoundToInt(position.x / size);
+        int yCount = Mathf.RoundToInt(position.y / size);
+        int zCount = Mathf.RoundToInt(position.z / size);
+
+        Vector3 result = new Vector3(
+            (float)xCount * size,
+            (float)yCount * size,
+            (float)zCount * size);
+
+        
         return result;
     }
 
