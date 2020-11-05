@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class GroundCube : MonoBehaviour
 {
-
-    public Material underMaterial;
-    public Material normalMaterial;
+    [SerializeField, SerializeReference]
+    public CubeMaterialCreater materialCreater;
     private static int nextID = 1;
     public int id = 0;
-    //[SerializeField]
-    //private string type = "";
 
-    private bool underGroundCube = false;
+    private bool[] surroundingGrund = new bool[4];
 
     private MeshRenderer meshRenderer = null;
-    // Start is called before the first frame update
+
+
     void Start()
     {
-        //meshRenderer = GetComponentInChildren<MeshRenderer>();
         id = nextID;
         nextID++;
     }
 
-    
 
-    public void SetUnder(bool start) {
-        underGroundCube = start;
+    public void SetUnder(bool start, int pos) {
+        surroundingGrund[pos] = start;
         updateMaterial();
     }
 
@@ -35,13 +31,13 @@ public class GroundCube : MonoBehaviour
         if (meshRenderer == null) {
             meshRenderer = GetComponentInChildren<MeshRenderer>();
         }
-        if (underGroundCube)
-            meshRenderer.material = underMaterial;
-        else
-            meshRenderer.material = normalMaterial;
+
+        int val = (surroundingGrund[0]) ? 1 : 0;
+        val += 2 * ((surroundingGrund[1]) ? 1 : 0);
+        val += 4 * ((surroundingGrund[2]) ? 1 : 0);
+        val += 8 * ((surroundingGrund[3]) ? 1 : 0);
+        meshRenderer.material = materialCreater.GetMaterial(val);
+
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 }

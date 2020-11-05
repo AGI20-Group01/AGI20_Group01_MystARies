@@ -27,15 +27,17 @@ public class GroundTracker : MonoBehaviour
                 snapAllOnjects(child, ground);
             } else {
                 Vector3 pos = child.position;
-                pos = grid.GetNearestPointOnGrid(pos);
-                if (ground.ContainsKey(pos)) {
+                Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
+                Vector3 gridIndex = grid.GetGridCellIndex(pos);        
+
+                if (ground.ContainsKey(gridIndex)) {
                     DestroyImmediate(child.gameObject);
                     return;
                 }
-                updateCubesSurrounding(child.gameObject, pos, ground);
+                updateCubesSurrounding(child.gameObject, gridIndex, ground);
 
-                ground.Add(pos, child.gameObject);
-                child.position = pos;
+                ground.Add(gridIndex, child.gameObject);
+                child.position = gridPos;
             }
         }
     }
@@ -46,40 +48,77 @@ public class GroundTracker : MonoBehaviour
 
     private void updateCubesSurrounding(GameObject go, Vector3 pos, Dictionary<Vector3, GameObject> ground) {
         GroundCube gc = go.GetComponent<GroundCube>();
+
+
+        gc.SetUnder(false, 0);
+        gc.SetUnder(false, 1);
+        gc.SetUnder(false, 2);
+        gc.SetUnder(false, 3);
+
         if (ground.ContainsKey(pos + new Vector3(0,1,0))) {
-            gc.SetUnder(true);
-        } else {
-            gc.SetUnder(false);
+            gc.SetUnder(true, 0);
         }
+        if (ground.ContainsKey(pos + new Vector3(0,-1,0))) {
+            gc.SetUnder(true, 2);
+        }
+        if (ground.ContainsKey(pos + new Vector3(1,0,0))) {
+            gc.SetUnder(true, 1);
+        }
+        if (ground.ContainsKey(pos + new Vector3(-1,0,0))) {
+            gc.SetUnder(true, 3);
+        } 
+
 
         if (ground.ContainsKey(pos + new Vector3(0,-1,0))) {
-            ground[(pos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(true);
+            ground[(pos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(true, 0);
+        }
+        if (ground.ContainsKey(pos + new Vector3(0,1,0))) {
+            ground[(pos + new Vector3(0,1,0))].GetComponent<GroundCube>().SetUnder(true, 2);
+        }
+        if (ground.ContainsKey(pos + new Vector3(-1,0,0))) {
+            ground[(pos + new Vector3(-1,0,0))].GetComponent<GroundCube>().SetUnder(true, 1);
+        }
+        if (ground.ContainsKey(pos + new Vector3(1,0,0))) {
+            ground[(pos + new Vector3(1,0,0))].GetComponent<GroundCube>().SetUnder(true, 3);
         }
     }
 
     public void AddCube(Vector3 pos, int type) {
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
+        Vector3 gridIndex = grid.GetGridCellIndex(pos);        
 
-        if (ground.ContainsKey(gridPos)) {
+        if (ground.ContainsKey(gridIndex)) {
             return;
         }
-        GameObject go = Instantiate(groundTypes[type], gridPos, Quaternion.identity);
+        
+        GameObject go = Instantiate(groundTypes[type], gridPos, theGround.rotation);
+        go.transform.SetParent(theGround);
 
-        updateCubesSurrounding(go, gridPos);
-        ground.Add(gridPos, go);
+        updateCubesSurrounding(go, gridIndex);
+        ground.Add(gridIndex, go);
     }
 
     public void RemoveCube(Vector3 pos) {
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
+        Vector3 gridIndex = grid.GetGridCellIndex(pos);
 
-        if (ground.ContainsKey(gridPos)) {
-           
-            StartCoroutine(BreakBlock(ground[gridPos]));
+        if (ground.ContainsKey(gridIndex)) {
+            Destroy(ground[gridIndex]);
 
-           // Destroy(ground[gridPos]);  
-            ground.Remove(gridPos);
-            if (ground.ContainsKey(gridPos + new Vector3(0,-1,0)))
-                ground[(gridPos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(false);
+            ground.Remove(gridIndex);
+
+            if (ground.ContainsKey(gridIndex + new Vector3(0,-1,0))) {
+                ground[(gridIndex + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(false, 0);
+            }
+            if (ground.ContainsKey(gridIndex + new Vector3(0,1,0))) {
+                ground[(gridIndex + new Vector3(0,1,0))].GetComponent<GroundCube>().SetUnder(false, 2);
+            }
+            if (ground.ContainsKey(gridIndex + new Vector3(-1,0,0))) {
+                ground[(gridIndex + new Vector3(-1,0,0))].GetComponent<GroundCube>().SetUnder(false, 1);
+            }
+            if (ground.ContainsKey(gridIndex + new Vector3(1,0,0))) {
+                ground[(gridIndex + new Vector3(1,0,0))].GetComponent<GroundCube>().SetUnder(false, 3);
+            }
         }
     }
 
@@ -126,4 +165,3 @@ public class GroundTracker : MonoBehaviour
     */
 
 }
-

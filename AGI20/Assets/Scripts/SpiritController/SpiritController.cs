@@ -9,6 +9,9 @@ public class SpiritController : MonoBehaviour
     public ARRaycastManager arRaycastManager;
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
     public GroundTracker groundTracker;
+    [SerializeField]
+    private NetworkClient networkClient;
+   
 
    void Start()
     {
@@ -33,7 +36,7 @@ public class SpiritController : MonoBehaviour
                         Vector3 position = hitpos + hit.normal;
 
                         groundTracker.AddCube(position, 0);
-
+                        networkClient.snedAddCube(position);
                     }
                     if (Input.touchCount == 2)
                     {
@@ -41,6 +44,7 @@ public class SpiritController : MonoBehaviour
                         if (hit.collider.tag == "interactablecube")
                         {
                             groundTracker.RemoveCube(hitpos);
+                            networkClient.snedRemoveCube(hitpos);
                             //DeleteCube(hit.collider.gameObject);
                         }
                         else
