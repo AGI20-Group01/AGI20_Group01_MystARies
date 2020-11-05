@@ -30,6 +30,11 @@ EditorBuildSettings:
     path: Assets/Scenes/CurrentDev/JosefinTestScene.unity
     guid: eb96df714db559a4b85b980cbcfc1ad2
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/TravelerScenes/Namesh-scene.unity
     guid: 745c9d0d0713c4420a2c857b58f55606
+=======
+    path: Assets/Scenes/SpiritScenes/SpiritScene.unity
+    guid: a5957e683f1482c4790b32baae5074a6
+>>>>>>> VisualEffects
   m_configObjects: {}

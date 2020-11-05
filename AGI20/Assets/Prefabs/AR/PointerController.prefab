@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7850016369982260717}
   - component: {fileID: 7850016369982260716}
   - component: {fileID: 7850016369982260719}
+  - component: {fileID: 2072222310394438246}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7850016369982260718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.01, z: 0.05}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 7850016371187945362}
   m_RootOrder: 0
@@ -94,6 +95,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!95 &2072222310394438246
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850016369982260718}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e987ae17b8e59c42881878b27c76ddd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7850016371187945364
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,8 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80fb34ef04135494eb97e0ccf9c65eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelPrefab: {fileID: 0}
   arRaycastManager: {fileID: 0}
   PointerObj: {fileID: 7850016369982260718}
-  WorldAnchor: {fileID: 0}
-  CubePrefab: {fileID: 8094199779078929786, guid: dfa9486fd6d9dec47af2c7e3e49b6503,
-    type: 3}

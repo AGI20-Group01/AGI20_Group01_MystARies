@@ -9,11 +9,10 @@ public class GroundTracker : MonoBehaviour
     public GameObject[] groundTypes;
     public Transform theGround;
 
-
-
     void Start() {
         grid = FindObjectOfType<Grid>();
         snapAllOnjects(theGround, ground);
+        
     }
 
     public void snapAllOnjects() { 
@@ -74,12 +73,57 @@ public class GroundTracker : MonoBehaviour
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
 
         if (ground.ContainsKey(gridPos)) {
-            Destroy(ground[gridPos]);
+           
+            StartCoroutine(BreakBlock(ground[gridPos]));
+
+           // Destroy(ground[gridPos]);  
             ground.Remove(gridPos);
             if (ground.ContainsKey(gridPos + new Vector3(0,-1,0)))
                 ground[(gridPos + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(false);
         }
     }
+
+    public void ShakeCube(Vector3 pos)
+    {
+        Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
+        if (ground.ContainsKey(gridPos))
+        {
+            Debug.Log("Found object! " + gridPos);
+
+            GameObject block = ground[gridPos];
+
+            Animator animator = block.GetComponent<Animator>();
+            animator.SetTrigger("Shake");
+        }
+        else
+        {
+            Debug.Log("Object not in ground"+ gridPos);
+        }
+    }
+
+        private IEnumerator BreakBlock(GameObject block)
+    {
+        MeshRenderer mr = block.GetComponentInChildren<MeshRenderer>();
+        ParticleSystem particle =  block.GetComponentInChildren<ParticleSystem>();
+        BoxCollider bc = block.GetComponent<BoxCollider>();
+
+        particle.Play();
+
+        mr.enabled = false;
+        bc.enabled = false;
+        // un render block
+        // make it not touchable
+
+        yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
+        Destroy(block);
+    }
+/*
+    public void TestBlock()
+    {
+        Vector3 test = new Vector3(0, 0, 0);
+        ShakeCube(test);
+    }
+    */
 
 }
 
