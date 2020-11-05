@@ -4,8 +4,6 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.ARFoundation;
 
-
-
 public class SpiritController : MonoBehaviour
 {
     public ARRaycastManager arRaycastManager;
