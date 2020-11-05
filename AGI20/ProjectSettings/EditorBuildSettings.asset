@@ -29,7 +29,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CurrentDev/JosefinTestScene.unity
     guid: eb96df714db559a4b85b980cbcfc1ad2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TravelerScenes/Namesh-scene.unity
     guid: 745c9d0d0713c4420a2c857b58f55606
+  - enabled: 1
+    path: Assets/Scenes/TravelerScenes/TravellerAR.unity
+    guid: f2a466f0e935da24d975d9a244d0b557
   m_configObjects: {}

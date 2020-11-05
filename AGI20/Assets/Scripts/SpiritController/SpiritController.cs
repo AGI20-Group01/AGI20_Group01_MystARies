@@ -36,13 +36,6 @@ public class SpiritController : MonoBehaviour
 
                         groundTracker.AddCube(position, 0);
 
-                                    // calculate the rotation to create the object aligned with the face normal:
-                                    //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
-                                    // create the object at the face center, and perpendicular to it:
-                                    // GameObject Placement = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                                    // Placement.transform.position = position;
-                                    //Placement.transform.rotation = rotation;
-                        //CreateCube(position);
                     }
                     if (Input.touchCount == 2)
                     {
@@ -50,7 +43,6 @@ public class SpiritController : MonoBehaviour
                         if (hit.collider.tag == "interactablecube")
                         {
                             groundTracker.RemoveCube(hitpos);
-                            //DeleteCube(hit.collider.gameObject);
                         }
 
                     }
@@ -58,16 +50,5 @@ public class SpiritController : MonoBehaviour
             }
         }
     }
-    /*
-    private void CreateCube(Vector3 position)
-    {
-        Instantiate(cubePrefab, position, Quaternion.identity);
-    }
-    
-    private void DeleteCube(GameObject cubeObject)
-    {
-        Destroy(cubeObject);
-    }
-    */
     
 }
