@@ -6,24 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
     path: Assets/Scenes/SpiritScenes/SpiritScene.unity
     guid: 4381633bebd52544d9035b06b0abacfa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ShaderTestScene.unity
     guid: a4b1a8031b44a0d4d9cbed539b5bc30d
+  - enabled: 1
+    path: Assets/Scenes/SpiritScenes/SpiritSceneNetwork.unity
+    guid: 6f5a2709e6a9fca4db5d242bf2a7b6c9
   m_configObjects: {}

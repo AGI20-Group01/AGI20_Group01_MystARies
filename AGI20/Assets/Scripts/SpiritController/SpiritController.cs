@@ -12,6 +12,8 @@ public class SpiritController : MonoBehaviour
     private List<ARRaycastHit> arRaycastHits = new List<ARRaycastHit>();
     public GroundTracker groundTracker;
     //public GameObject cubePrefab;
+    [SerializeField]
+    private NetworkClient networkClient;
    
 
     // Update is called once per frame
@@ -32,7 +34,7 @@ public class SpiritController : MonoBehaviour
                         Vector3 position = hitpos + hit.normal;
 
                         groundTracker.AddCube(position, 0);
-
+                        networkClient.snedAddCube(position);
                                     // calculate the rotation to create the object aligned with the face normal:
                                     //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                                     // create the object at the face center, and perpendicular to it:
@@ -47,6 +49,7 @@ public class SpiritController : MonoBehaviour
                         if (hit.collider.tag == "interactablecube")
                         {
                             groundTracker.RemoveCube(hitpos);
+                            networkClient.snedRemoveCube(hitpos);
                             //DeleteCube(hit.collider.gameObject);
                         }
 
