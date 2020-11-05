@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 2.0f;
     public bool isGrounded;
     Rigidbody rb;
+    [SerializeField]
+    private NetworkClient networkClient;
 
 
     // Use this for initialization
@@ -27,11 +29,12 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
     // Update is called once per frame
     private void Update()
     {
         //Jump
-         if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
 
             rb.AddForce(jump * jumpForce, ForceMode.Impulse);
             isGrounded = false;
@@ -51,7 +54,8 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("Running", false);
         }
-        
+
+       
     }
 }
 
