@@ -88,6 +88,8 @@ public class GroundTracker : MonoBehaviour
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
         if (ground.ContainsKey(gridPos))
         {
+            Debug.Log("Found object! " + gridPos);
+
             GameObject block = ground[gridPos];
 
             Animator animator = block.GetComponent<Animator>();
@@ -115,12 +117,13 @@ public class GroundTracker : MonoBehaviour
         yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
         Destroy(block);
     }
-
+/*
     public void TestBlock()
     {
         Vector3 test = new Vector3(0, 0, 0);
         ShakeCube(test);
     }
+    */
 
 }
 
