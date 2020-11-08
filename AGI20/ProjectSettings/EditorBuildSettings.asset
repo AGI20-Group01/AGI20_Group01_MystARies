@@ -21,18 +21,24 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/SpiritScenes/Old scenes/SpiritSceneOld.unity
-    guid: 4381633bebd52544d9035b06b0abacfa
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/SpiritScenes/DevScenes/WorldAnchorTest.unity
-    guid: f96ca480640e96b4f8d20d13e6b685a7
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/CurrentDev/JosefinTestScene.unity
-    guid: eb96df714db559a4b85b980cbcfc1ad2
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
-    path: Assets/Scenes/TravelerScenes/Namesh-scene.unity
-    guid: 745c9d0d0713c4420a2c857b58f55606
-  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/TravelerScenes/TravellerAR.unity
     guid: f2a466f0e935da24d975d9a244d0b557
+  - enabled: 1
+    path: Assets/Scenes/ShaderTestScene.unity
+    guid: a4b1a8031b44a0d4d9cbed539b5bc30d
+  - enabled: 0
+    path: Assets/Scenes/SpiritScenes/SpiritScene.unity
+    guid: a5957e683f1482c4790b32baae5074a6
   m_configObjects: {}

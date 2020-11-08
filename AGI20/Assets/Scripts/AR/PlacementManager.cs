@@ -21,6 +21,7 @@ public class PlacementManager : MonoBehaviour
     private ARPointCloudManager arPointCloudManager;
     private ARPlaneManager arPlaneManager;
     private List<ARReferencePoint> referencePoints = new List<ARReferencePoint>();
+    public GameObject placeWorldButton;
 
 
     // Placement Manager 
@@ -78,6 +79,7 @@ public class PlacementManager : MonoBehaviour
                     groundTracker.snapAllOnjects();
                     PlacingState = false;
                     PointerObj.SetActive(false);
+                    placeWorldButton.SetActive(false); 
 
                 }
             }

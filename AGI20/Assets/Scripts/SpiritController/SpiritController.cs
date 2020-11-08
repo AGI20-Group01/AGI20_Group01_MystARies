@@ -16,6 +16,7 @@ public class SpiritController : MonoBehaviour
    void Start()
     {
        arRaycastManager = FindObjectOfType<ARRaycastManager>();
+       networkClient = FindObjectOfType<NetworkClient>();
     }
 
     // Update is called once per frame

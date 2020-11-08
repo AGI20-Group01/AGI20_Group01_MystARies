@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class GroundTracker : MonoBehaviour
 {
@@ -8,10 +10,12 @@ public class GroundTracker : MonoBehaviour
     private Grid grid;
     public GameObject[] groundTypes;
     public Transform theGround;
+    public NavigationBaker navBaker;
 
     void Start() {
         grid = FindObjectOfType<Grid>();
         snapAllOnjects(theGround, ground);
+        navBaker = FindObjectOfType<NavigationBaker>();
         
     }
 
@@ -96,6 +100,7 @@ public class GroundTracker : MonoBehaviour
 
         updateCubesSurrounding(go, gridIndex);
         ground.Add(gridIndex, go);
+        //navBaker.AddToSurface(go);
     }
 
     public void RemoveCube(Vector3 pos) {
@@ -103,7 +108,8 @@ public class GroundTracker : MonoBehaviour
         Vector3 gridIndex = grid.GetGridCellIndex(pos);
 
         if (ground.ContainsKey(gridIndex)) {
-            Destroy(ground[gridIndex]);
+            StartCoroutine(BreakBlock(ground[gridIndex]));  // trigger particle effect
+            //Destroy(ground[gridIndex]);
 
             ground.Remove(gridIndex);
 
@@ -147,21 +153,24 @@ public class GroundTracker : MonoBehaviour
         BoxCollider bc = block.GetComponent<BoxCollider>();
 
         particle.Play();
-
-        mr.enabled = false;
-        bc.enabled = false;
         // un render block
+        mr.enabled = false;
         // make it not touchable
+        bc.enabled = false;
 
         yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
         Destroy(block);
     }
-/*
-    public void TestBlock()
+
+    public void TestPlace()
     {
-        Vector3 test = new Vector3(0, 0, 0);
-        ShakeCube(test);
+        Vector3 test = new Vector3(0, 0, 3);
+        AddCube(test, 0);
     }
-    */
+    
+    public void TestBreak()
+    {
+        RemoveCube(new Vector3(0, 0, 0));
+    }
 
 }

@@ -1,13 +1,14 @@
 ﻿// ClickToMove.cs
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent (typeof (UnityEngine.AI.NavMeshAgent))]
 public class ClickToMove : MonoBehaviour {
 	RaycastHit hitInfo = new RaycastHit();
-	UnityEngine.AI.NavMeshAgent agent;
+	NavMeshAgent agent;
 
 	void Start () {
-		agent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
+		agent = GetComponent<NavMeshAgent> ();
 	}
 	void Update () {
 		if(Input.GetMouseButtonDown(0)) {
