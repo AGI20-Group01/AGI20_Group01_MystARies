@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using NavMeshBuilder = UnityEngine.AI.NavMeshBuilder;
+
 
 public class NavigationBaker : MonoBehaviour
 {
     public List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
-    public GroundTracker ground;
-    public GameObject cubePrefab;
-    public Transform theGround;
 
-    //public static Dictionary<Vector3, GameObject> ground = new Dictionary<Vector3, GameObject>();
+    //  Variables for testing
+   // public GroundTracker groundTracker;
+   //public GameObject cubePrefab;
+    //public GameObject navMeshSurfObj;
+    //public Transform groundParent;
+   // public NavMeshSurface nm;
+   // private Vector3 v = new Vector3(0, 0, 3);
+
     // Start is called before the first frame update
     void Start()
-    {
-        BakeSurface();
+    {   
+       BakeSurface();
     }
 
     public void BakeSurface()
@@ -24,21 +30,19 @@ public class NavigationBaker : MonoBehaviour
             surfaces[i].BuildNavMesh();
         }
     }
-
+    /*
     public void TestPlace()
     {
-        //ground.AddCube(new Vector3(0, 0, 3), 0);
-       GameObject go = Instantiate(cubePrefab, new Vector3(0, 0, 3), Quaternion.identity);
-        go.transform.SetParent(theGround);
-        NavMeshSurface nm = go.GetComponent<NavMeshSurface>();
-        surfaces.Add(nm);
-        
-        BakeSurface();
-    }
+        groundTracker.AddCube(v, 0);
+        v = v + new Vector3(1, 0, 3);
+    }*/
+
     public void AddToSurface(GameObject go)
     {
         NavMeshSurface nm = go.GetComponent<NavMeshSurface>();
         surfaces.Add( nm);
+        BakeSurface();
     }
+    
 
 }

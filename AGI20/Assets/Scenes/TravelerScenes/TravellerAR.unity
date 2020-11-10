@@ -993,13 +993,18 @@ PrefabInstance:
         type: 3}
       propertyPath: levelPrefab
       value: 
-      objectReference: {fileID: 4596417177807878715, guid: d054cf94e66da9f4ea3b3e4fa7777f9d,
+      objectReference: {fileID: 8238072524129196597, guid: 765df619339715141bfa8bff18a0cbac,
         type: 3}
     - target: {fileID: 7850016371187945365, guid: b281a68f29cf2b3458fd2774f217e8be,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7850016371187945365, guid: b281a68f29cf2b3458fd2774f217e8be,
+        type: 3}
+      propertyPath: placeWorldButton
+      value: 
+      objectReference: {fileID: 1161421322}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b281a68f29cf2b3458fd2774f217e8be, type: 3}
 --- !u!114 &2040040220 stripped

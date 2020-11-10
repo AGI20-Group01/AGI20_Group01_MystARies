@@ -100,7 +100,7 @@ public class GroundTracker : MonoBehaviour
 
         updateCubesSurrounding(go, gridIndex);
         ground.Add(gridIndex, go);
-        //navBaker.AddToSurface(go);
+        navBaker.AddToSurface(go);
     }
 
     public void RemoveCube(Vector3 pos) {
