@@ -17,6 +17,8 @@ public class ReferencePointManagerWithFeaturePoints : MonoBehaviour
     private List<ARReferencePoint> referencePoints = new List<ARReferencePoint>();
     private List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
+    public static Vector3 refPoint;
+
     void Awake()
     {
         arRaycastManager = GetComponent<ARRaycastManager>();
@@ -39,6 +41,8 @@ public class ReferencePointManagerWithFeaturePoints : MonoBehaviour
         {
             Pose hitPose = hits[0].pose;
             ARReferencePoint referencePoint = arReferencePointManager.AddReferencePoint(hitPose);
+
+            refPoint = hitPose.position*1000;
 
             if (referencePoint == null)
             {
