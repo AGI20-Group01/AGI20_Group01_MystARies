@@ -43,7 +43,7 @@ public class NetworkClient : SocketIOComponent
             //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
             pos = WorldposToARpos(pos);
-            groundTracker.AddCube(pos/1000, 0);
+            groundTracker.AddCube(pos, 0);
 
         });
 
@@ -51,7 +51,7 @@ public class NetworkClient : SocketIOComponent
             //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
             pos = WorldposToARpos(pos);
-            groundTracker.RemoveCube(pos/1000);
+            groundTracker.RemoveCube(pos);
 
         });
 
@@ -75,12 +75,12 @@ public class NetworkClient : SocketIOComponent
 
 
     public void snedAddCube(Vector3 pos) {
-        pos = ARposToWorldpos(pos*1000);
+        pos = ARposToWorldpos(pos);
         Emit("AddCube", new JSONObject("{\"id\":\"" + id + "\",\"x\":" + pos.x + ",\"y\":" + pos.y + ",\"z\":" + pos.z + "}" ));
     }
 
     public void snedRemoveCube(Vector3 pos) {
-        pos = ARposToWorldpos(pos*1000);
+        pos = ARposToWorldpos(pos);
         Emit("RemoveCube", new JSONObject("{\"id\":\"" + id + "\",\"x\":" + pos.x + ",\"y\":" + pos.y + ",\"z\":" + pos.z + "}" ));
     }
 

@@ -42,7 +42,7 @@ public class ReferencePointManagerWithFeaturePoints : MonoBehaviour
             Pose hitPose = hits[0].pose;
             ARReferencePoint referencePoint = arReferencePointManager.AddReferencePoint(hitPose);
 
-            refPoint = hitPose.position*1000;
+            refPoint = hitPose.position;
 
             if (referencePoint == null)
             {
