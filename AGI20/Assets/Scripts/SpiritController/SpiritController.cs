@@ -16,6 +16,7 @@ public class SpiritController : MonoBehaviour
    void Start()
     {
        arRaycastManager = FindObjectOfType<ARRaycastManager>();
+       networkClient = FindObjectOfType<NetworkClient>();
     }
 
     // Update is called once per frame
@@ -57,16 +58,5 @@ public class SpiritController : MonoBehaviour
             }
         }
     }
-    /*
-    private void CreateCube(Vector3 position)
-    {
-        Instantiate(cubePrefab, position, Quaternion.identity);
-    }
-    
-    private void DeleteCube(GameObject cubeObject)
-    {
-        Destroy(cubeObject);
-    }
-    */
     
 }
