@@ -13,6 +13,7 @@ public static class SceneHandler
     public enum Scene
     {
         SpiritScene,
+        TravellerAR,
         LoadingScene
     }
 
