@@ -42,6 +42,7 @@ public class NetworkClient : SocketIOComponent
         On("AddCube", (E) => {
             //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
+            pos = ArTOWorldPos(pos);
             groundTracker.AddCube(pos, 0);
 
         });
@@ -49,6 +50,7 @@ public class NetworkClient : SocketIOComponent
          On("RemoveCube", (E) => {
             //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
+            pos = ArTOWorldPos(pos);
             groundTracker.RemoveCube(pos);
 
         });
@@ -56,8 +58,9 @@ public class NetworkClient : SocketIOComponent
         On("MoveTraveler", (E) => {
             //string id = E.data["id"].ToString().Replace("\"", "");
             Vector3 pos = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
+            pos = ArTOWorldPos(pos);
             //traveler.position = pos / 1000;
-            travelerNetworking.setTargetPos(pos / 1000);
+            travelerNetworking.setTargetPos(pos);
         });
 
 
@@ -66,25 +69,39 @@ public class NetworkClient : SocketIOComponent
             Vector3 rot = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
             //Debug.Log(rot);
             //traveler.rotation = Quaternion.Euler(rot / 1000); 
-            travelerNetworking.setTargetRot(rot / 1000);
+            travelerNetworking.setTargetRot(rot);
         });
     }
 
 
     public void snedAddCube(Vector3 pos) {
+        pos = WorldToArPos(pos);
         Emit("AddCube", new JSONObject("{\"id\":\"" + id + "\",\"x\":" + pos.x + ",\"y\":" + pos.y + ",\"z\":" + pos.z + "}" ));
     }
 
     public void snedRemoveCube(Vector3 pos) {
+        pos = WorldToArPos(pos);
         Emit("RemoveCube", new JSONObject("{\"id\":\"" + id + "\",\"x\":" + pos.x + ",\"y\":" + pos.y + ",\"z\":" + pos.z + "}" ));
     }
 
     public void sendMoveTraveler(Vector3 pos) {
+        pos = pos / 1000;
+        pos = WorldToArPos(pos);
         Emit("MoveTraveler", new JSONObject( "{\"id\":\"" + id + "\",\"x\":" +  pos.x + ",\"y\":" +  pos.y + ",\"z\":" +  pos.z + "}" ));
     }
 
     public void sendRotate(Vector3 rot) {
+        rot = rot / 1000;
         Emit("RotateTraveler", new JSONObject( "{\"id\":\"" + id + "\",\"x\":" +  rot.x + ",\"y\":" +  rot.y + ",\"z\":" +  rot.z + "}" ));
+    }
+
+    private Vector3 WorldToArPos(Vector3 pos) {
+        return pos - groundTracker.transform.position;
+    }
+
+
+    private Vector3 ArTOWorldPos(Vector3 pos) { 
+        return groundTracker.transform.position + pos;
     }
 
 }
