@@ -16,4 +16,10 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene("TravellerAR");
         //SceneHandler.Load(SceneHandler.Scene.TravellerAR);
     }
+
+    public void startMenu()
+    {
+        SceneManager.LoadScene("test");
+        //SceneHandler.Load(SceneHandler.Scene.TravellerAR);
+    }
 }
