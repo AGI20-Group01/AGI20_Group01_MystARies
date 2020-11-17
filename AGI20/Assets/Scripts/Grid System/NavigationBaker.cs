@@ -37,10 +37,10 @@ public class NavigationBaker : MonoBehaviour
         v = v + new Vector3(1, 0, 3);
     }*/
 
-    public void AddToSurface(GameObject go)
+    public void AddToSurface(/*GameObject go*/)
     {
-        NavMeshSurface nm = go.GetComponent<NavMeshSurface>();
-        surfaces.Add( nm);
+        //NavMeshSurface nm = go.GetComponent<NavMeshSurface>();
+        //surfaces.Add( nm);
         BakeSurface();
     }
     
