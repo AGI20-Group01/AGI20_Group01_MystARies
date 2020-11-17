@@ -28,6 +28,9 @@ public class GroundCube : MonoBehaviour
 
 
     private void updateMaterial() {
+        if (!materialCreater) {
+            return;
+        }
         if (meshRenderer == null) {
             meshRenderer = GetComponentInChildren<MeshRenderer>();
         }

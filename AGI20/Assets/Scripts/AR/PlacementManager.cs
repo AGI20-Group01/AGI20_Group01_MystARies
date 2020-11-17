@@ -74,7 +74,7 @@ public class PlacementManager : MonoBehaviour
                 if (referencePoint != null)
                 {
                     referencePoints.Add(referencePoint);
-                    GameObject obj1 = Instantiate(levelPrefab, hitPose.position, hitPose.rotation);
+                    GameObject obj1 = Instantiate(levelPrefab, hitPose.position + Vector3.up * 8, hitPose.rotation);
                     groundTracker = FindObjectOfType <GroundTracker>();
                     groundTracker.snapAllOnjects();
                     PlacingState = false;

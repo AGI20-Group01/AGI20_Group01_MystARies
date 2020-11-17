@@ -46,15 +46,15 @@ public class RotationHandler : MonoBehaviour
     }
 
 
-    void setTargetRot(Vector3 dir) {
+    public void setTargetRot(Vector3 dir) {
         if (Quaternion.Angle( Quaternion.Euler(targetRot),transform.rotation ) > 0.1) {
             return;
         }
 
         targetRot = transform.eulerAngles + 90 * dir;
-        /*targetRot.x = getAngleBetween0And360(targetRot.x);
+        targetRot.x = getAngleBetween0And360(targetRot.x);
         targetRot.y = getAngleBetween0And360(targetRot.y);
-        targetRot.z = getAngleBetween0And360(targetRot.z);*/
+        targetRot.z = getAngleBetween0And360(targetRot.z);
     }
 
     float getAngleBetween0And360(float angle) {

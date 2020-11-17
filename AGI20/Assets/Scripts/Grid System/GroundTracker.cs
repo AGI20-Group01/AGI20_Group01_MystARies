@@ -100,6 +100,7 @@ public class GroundTracker : MonoBehaviour
 
         updateCubesSurrounding(go, gridIndex);
         ground.Add(gridIndex, go);
+
         if (navBaker) {
             navBaker.AddToSurface();
         }   
@@ -128,6 +129,7 @@ public class GroundTracker : MonoBehaviour
                 ground[(gridIndex + new Vector3(1,0,0))].GetComponent<GroundCube>().SetUnder(false, 3);
             }
         }
+        
         if (navBaker) {
             navBaker.AddToSurface();
         }      
