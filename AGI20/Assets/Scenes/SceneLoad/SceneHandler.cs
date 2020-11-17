@@ -14,7 +14,8 @@ public static class SceneHandler
     {
         SpiritScene,
         TravellerAR,
-        LoadingScene
+        LoadingScene,
+        test
     }
 
     private static Action onLoaderCallback;
