@@ -5,20 +5,34 @@ using UnityEngine;
 public class RotationHandler : MonoBehaviour
 {
     private Vector3 targetRot; 
+    private Vector3 startRot;
 
     public float rotSpeed;
+
+    [SerializeField]
+    private List<Transform> galaxyCubes = new List<Transform>();
+
+    private float t;
 
     // Start is called before the first frame update
     void Start()
     {
+        GalaxyCube[] gCubes = GameObject.FindObjectsOfType<GalaxyCube>();
+        for (int i = 0; i < gCubes.Length; i++) {
+            galaxyCubes.Add(gCubes[i].transform);
+        }
+        
+
         targetRot = transform.eulerAngles;
+        startRot = transform.eulerAngles;
+        t = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         handleInputs();
-        //updateRotation();
+        updateRotation();
     }
 
 
@@ -36,12 +50,20 @@ public class RotationHandler : MonoBehaviour
 
 
     void updateRotation() {
-        Vector3 newRot = Quaternion.Lerp(transform.rotation, Quaternion.Euler(targetRot), Time.time * rotSpeed).eulerAngles;
+        t += Time.deltaTime * rotSpeed;
+
+        Vector3 newRot = Quaternion.Lerp(Quaternion.Euler(startRot), Quaternion.Euler(targetRot), t).eulerAngles;
         if (Quaternion.Angle( Quaternion.Euler(targetRot),transform.rotation ) < 0.1) {
+            t = 0;
+            startRot = targetRot;
             newRot = targetRot;
         }
-        Debug.Log(transform.eulerAngles + " " + targetRot);
+        //Debug.Log(transform.eulerAngles + " " + targetRot);
         transform.rotation = Quaternion.Euler(newRot);
+
+        for (int i = 0; i < galaxyCubes.Count; i++) {
+            galaxyCubes[i].rotation = Quaternion.identity;
+        }
         
     }
 

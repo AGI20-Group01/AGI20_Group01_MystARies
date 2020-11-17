@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class GalaxyCube : MonoBehaviour
 {
+
+    private RotationHandler rotationHandler;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        rotationHandler = GameObject.FindGameObjectWithTag("GridHandler").GetComponent<RotationHandler>();
+        //rotationHandler.setTargetRot(new Vector3(0,0,1));
+
     }
 
-    // Update is called once per frame
-    void Update()
+    /*void Update()
     {
-        
+        transform.rotation = Quaternion.identity;
+    }*/
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("trig");
+        rotationHandler.setTargetRot(new Vector3(0,0,1));
     }
 }

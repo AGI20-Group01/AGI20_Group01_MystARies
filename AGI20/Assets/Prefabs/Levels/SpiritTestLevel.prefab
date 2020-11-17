@@ -1162,6 +1162,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4064497896230083486, guid: c859c47ee3336d44abc4a4e1b5323688,
+        type: 3}
+      propertyPath: m_TagString
+      value: GridHandler
+      objectReference: {fileID: 0}
     - target: {fileID: 4070611573916371573, guid: c859c47ee3336d44abc4a4e1b5323688,
         type: 3}
       propertyPath: m_TagString

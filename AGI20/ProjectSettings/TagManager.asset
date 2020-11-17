@@ -6,6 +6,7 @@ TagManager:
   tags:
   - interactablecube
   - GroundeCube
+  - GridHandler
   layers:
   - Default
   - TransparentFX

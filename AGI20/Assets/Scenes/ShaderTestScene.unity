@@ -160,6 +160,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridHandler
       objectReference: {fileID: 0}
+    - target: {fileID: 4064497896230083486, guid: c859c47ee3336d44abc4a4e1b5323688,
+        type: 3}
+      propertyPath: m_TagString
+      value: GridHandler
+      objectReference: {fileID: 0}
     - target: {fileID: 4070611573916371573, guid: c859c47ee3336d44abc4a4e1b5323688,
         type: 3}
       propertyPath: m_TagString
@@ -459,6 +464,7 @@ MonoBehaviour:
   groundTypes:
   - {fileID: 8389617179654546782, guid: 5c051f6e2216447498cb0dd5f05279ae, type: 3}
   theGround: {fileID: 1137036274}
+  navBaker: {fileID: 0}
 --- !u!114 &466532042
 MonoBehaviour:
   m_ObjectHideFlags: 0
