@@ -102,7 +102,7 @@ public class GroundTracker : MonoBehaviour
         ground.Add(gridIndex, go);
 
         if (navBaker) {
-            navBaker.AddToSurface();
+            navBaker.BakeSurface();
         }   
     }
 
@@ -128,11 +128,11 @@ public class GroundTracker : MonoBehaviour
             if (ground.ContainsKey(gridIndex + new Vector3(1,0,0))) {
                 ground[(gridIndex + new Vector3(1,0,0))].GetComponent<GroundCube>().SetUnder(false, 3);
             }
-        }
-        
-        if (navBaker) {
-            navBaker.AddToSurface();
-        }      
+
+            if (navBaker) {
+                navBaker.BakeSurface();
+            }  
+        } 
     }
 
     public void ShakeCube(Vector3 pos)

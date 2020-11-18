@@ -9,6 +9,8 @@ public class GroundCube : MonoBehaviour
     private static int nextID = 1;
     public int id = 0;
 
+    public Transform cubeCollider;
+
     private bool[] surroundingGrund = new bool[4];
 
     private MeshRenderer meshRenderer = null;
@@ -18,6 +20,13 @@ public class GroundCube : MonoBehaviour
     {
         id = nextID;
         nextID++;
+    }
+
+    void Update()
+    {
+        if (cubeCollider) {
+            cubeCollider.rotation = Quaternion.identity;
+        }
     }
 
 

@@ -9,8 +9,9 @@ public class RotationHandler : MonoBehaviour
 
     public float rotSpeed;
 
-    [SerializeField]
-    private List<Transform> galaxyCubes = new List<Transform>();
+    private NavigationBaker navigationBaker;
+    public Transform player;
+    public List<Transform> galaxyCubes = new List<Transform>();
 
     private float t;
 
@@ -22,6 +23,8 @@ public class RotationHandler : MonoBehaviour
             galaxyCubes.Add(gCubes[i].transform);
         }
         
+        //navigationBaker = GetComponentInChildren<NavigationBaker>();
+        navigationBaker = FindObjectOfType<NavigationBaker>();
 
         targetRot = transform.eulerAngles;
         startRot = transform.eulerAngles;
@@ -32,6 +35,8 @@ public class RotationHandler : MonoBehaviour
     void Update()
     {
         handleInputs();
+
+
         updateRotation();
     }
 
@@ -57,10 +62,13 @@ public class RotationHandler : MonoBehaviour
             t = 0;
             startRot = targetRot;
             newRot = targetRot;
+            navigationBaker.BakeSurface();
         }
         //Debug.Log(transform.eulerAngles + " " + targetRot);
         transform.rotation = Quaternion.Euler(newRot);
 
+        //test.rotation =  Quaternion.identity;
+        player.rotation =  Quaternion.identity;
         for (int i = 0; i < galaxyCubes.Count; i++) {
             galaxyCubes[i].rotation = Quaternion.identity;
         }
@@ -72,7 +80,7 @@ public class RotationHandler : MonoBehaviour
         if (Quaternion.Angle( Quaternion.Euler(targetRot),transform.rotation ) > 0.1) {
             return;
         }
-
+        navigationBaker.ClearSurface();
         targetRot = transform.eulerAngles + 90 * dir;
         targetRot.x = getAngleBetween0And360(targetRot.x);
         targetRot.y = getAngleBetween0And360(targetRot.y);

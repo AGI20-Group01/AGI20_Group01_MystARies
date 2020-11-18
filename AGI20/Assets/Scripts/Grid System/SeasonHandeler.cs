@@ -22,12 +22,12 @@ public class SeasonHandeler : MonoBehaviour
 
         float rot = transform.eulerAngles.z % 360;
 
-        if (Mathf.Round(rot) % 90 == 0 && time > 0) {
+        /*if (Mathf.Round(rot) % 90 == 0 && time > 0) {
             time -= Time.deltaTime;
         } else {
             time = 2;
             transform.eulerAngles = transform.eulerAngles + new Vector3(0,0,speed) * Time.deltaTime;
-        }
+        }*/
 
         if (rot >= 0 && rot < 90) {
             float t = rot / 90;

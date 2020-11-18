@@ -30,6 +30,10 @@ public class NavigationBaker : MonoBehaviour
             surfaces[i].BuildNavMesh();
         }
     }
+
+    public void ClearSurface() {
+         NavMesh.RemoveAllNavMeshData(); 
+    }
     /*
     public void TestPlace()
     {
