@@ -6,6 +6,8 @@ public class Orbit : MonoBehaviour
 {/* the object to orbit */
     public Transform target;
     public Vector3 axis;
+    public Vector3 offset;
+    private Vector3 center;
 
     /* speed of orbit (in degrees/second) */
     public float speed;
@@ -14,7 +16,11 @@ public class Orbit : MonoBehaviour
     {
         if (target != null)
         {
-            transform.RotateAround(target.position, axis, speed * Time.deltaTime);
+            center = new Vector3(0,0,0);
+            center.y += offset.y;
+            transform.RotateAround(target.position + center, axis, speed * Time.deltaTime);
         }
     }
+
+    
 }
