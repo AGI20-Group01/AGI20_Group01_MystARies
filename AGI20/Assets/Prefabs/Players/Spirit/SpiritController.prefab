@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arRaycastManager: {fileID: 0}
-  ground: {fileID: 0}
+  groundTracker: {fileID: 0}
+  networkClient: {fileID: 0}
+  PingPosition: {fileID: 7804307433157886205, guid: e5bbc6e9aa6ef7549ac50976ac611f51,
+    type: 3}
