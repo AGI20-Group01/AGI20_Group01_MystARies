@@ -15,7 +15,7 @@ public class GroundTracker : MonoBehaviour
     void Start() {
         grid = FindObjectOfType<Grid>();
         snapAllOnjects(theGround, ground);
-        navBaker = FindObjectOfType<NavigationBaker>();
+        //navBaker = FindObjectOfType<NavigationBaker>();
         
     }
 

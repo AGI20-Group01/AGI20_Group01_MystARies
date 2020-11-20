@@ -6,12 +6,15 @@ public class RotationHandler : MonoBehaviour
 {
     private Vector3 targetRot; 
     private Vector3 startRot;
+    private Vector3 prevRot;
 
     public float rotSpeed;
 
     private NavigationBaker navigationBaker;
     public Transform player;
     public List<Transform> galaxyCubes = new List<Transform>();
+
+    public NetworkClient networkClient;
 
     private float t;
 
@@ -26,6 +29,7 @@ public class RotationHandler : MonoBehaviour
         //navigationBaker = GetComponentInChildren<NavigationBaker>();
         navigationBaker = FindObjectOfType<NavigationBaker>();
 
+        prevRot = transform.eulerAngles;
         targetRot = transform.eulerAngles;
         startRot = transform.eulerAngles;
         t = 0;
@@ -64,9 +68,16 @@ public class RotationHandler : MonoBehaviour
             newRot = targetRot;
             navigationBaker.BakeSurface();
         }
-        //Debug.Log(transform.eulerAngles + " " + targetRot);
         transform.rotation = Quaternion.Euler(newRot);
 
+        newRot.x = Mathf.Round(newRot.x * 1000) / 1000;
+        newRot.y = Mathf.Round(newRot.y * 1000) / 1000;
+        newRot.z = Mathf.Round(newRot.z * 1000) / 1000;
+
+        if (newRot != prevRot) {
+            networkClient.sendWorldRotate(newRot);
+        }
+        prevRot = newRot;
         //test.rotation =  Quaternion.identity;
         player.rotation =  Quaternion.identity;
         for (int i = 0; i < galaxyCubes.Count; i++) {

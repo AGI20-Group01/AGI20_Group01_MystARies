@@ -71,6 +71,14 @@ public class NetworkClient : SocketIOComponent
             //traveler.rotation = Quaternion.Euler(rot / 1000); 
             travelerNetworking.setTargetRot(rot);
         });
+
+        On("RotateWorld", (E) => {
+            //string id = E.data["id"].ToString().Replace("\"", "");
+            Vector3 rot = new Vector3(float.Parse(E.data["x"].ToString()), float.Parse(E.data["y"].ToString()),float.Parse(E.data["z"].ToString()));
+            //Debug.Log(rot);
+            //traveler.rotation = Quaternion.Euler(rot / 1000); 
+            groundTracker.transform.rotation = Quaternion.Euler(rot);
+        });
     }
 
 
@@ -93,6 +101,10 @@ public class NetworkClient : SocketIOComponent
     public void sendRotate(Vector3 rot) {
         rot = rot / 1000;
         Emit("RotateTraveler", new JSONObject( "{\"id\":\"" + id + "\",\"x\":" +  rot.x + ",\"y\":" +  rot.y + ",\"z\":" +  rot.z + "}" ));
+    }
+
+    public void sendWorldRotate(Vector3 rot) {
+        Emit("RotateWorld", new JSONObject( "{\"id\":\"" + id + "\",\"x\":" +  rot.x + ",\"y\":" +  rot.y + ",\"z\":" +  rot.z + "}" ));
     }
 
     private Vector3 WorldToArPos(Vector3 pos) {

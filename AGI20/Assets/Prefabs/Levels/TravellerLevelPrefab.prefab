@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d7b3e8cd19c114eb203d174df80476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  url: ws://35.228.125.50/socket.io/?EIO=4&transport=websocket
+  url: ws://192.168.1.206:5000/socket.io/?EIO=4&transport=websocket
   autoConnect: 1
   reconnectDelay: 5
   ackExpirationTime: 1800
@@ -96,6 +96,7 @@ MonoBehaviour:
   rotSpeed: 1
   player: {fileID: 8672362273400499615}
   galaxyCubes: []
+  networkClient: {fileID: 1608101237766558497}
 --- !u!1 &7599859925945578433
 GameObject:
   m_ObjectHideFlags: 0
