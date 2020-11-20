@@ -353,6 +353,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6484584131685344376}
     m_Modifications:
+    - target: {fileID: 412381804526380636, guid: 03d344dc1e2a247459eaf0576f3b1725,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3778586792413181194, guid: 03d344dc1e2a247459eaf0576f3b1725,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5182733137811350790, guid: 03d344dc1e2a247459eaf0576f3b1725,
         type: 3}
       propertyPath: m_Name
@@ -428,7 +438,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3148723145200047979}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5b42aa40b5ee65438768f72d177ff07, type: 3}
   m_Name: 
