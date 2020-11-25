@@ -4,6 +4,7 @@ Shader "Custom/WaterShader"
 {
     Properties {
       _MainTex ("Texture", 2D) = "white" {}
+      _NoiseTex ("NoiseTexture", 2D) = "white" {}
       _BumpMap ("Bumpmap", 2D) = "bump" {}
 
       _Color ("Color", Color) = (1,1,1,1)
@@ -12,6 +13,8 @@ Shader "Custom/WaterShader"
     }
     SubShader {
       Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+      //Cull Off // this is optional, I think it looks good with ice
+Blend SrcAlpha OneMinusSrcAlpha
     GrabPass { "_MyGrabTexture" }
 
 
@@ -27,13 +30,15 @@ Shader "Custom/WaterShader"
     };
 
     uniform float _Season1_t;
-    uniform float _Season2_t;
+    uniform float3 _worldCenter;
+    uniform float3 _worldRot;
 
     sampler2D _MainTex;
     sampler2D _MyGrabTexture;
     sampler2D _BumpMap;
+    sampler2D _NoiseTex;
 
-    float3 _worldRot;
+    
 
     float4 _Color;
 
@@ -54,38 +59,60 @@ Shader "Custom/WaterShader"
         o.viewDir = normalize(_WorldSpaceCameraPos - mul(unity_ObjectToWorld, v.vertex)); 
     }
 
+
+    float invLerp(float from, float to, float value) {
+            return (value - from) / (to - from);
+    }
+
+    float noiseTransition(fixed4 noise, float3 worldPos, float t) {
+        t *= 3;
+        float dist = length(worldPos.xy) / 10;
+        t = clamp(t-noise-dist, 0, 1);
+        t = clamp(invLerp(0.45, 0.55, t), 0, 1);
+        return t;
+    }
+
     void surf (Input IN, inout SurfaceOutput o) {
-        float t = (sin(_Time * 10)) * 0.2 * (1 - _Season1_t); 
+        
 
-        float4 objectCenter = mul(unity_ObjectToWorld, float4(0.0,0.0,0.0,1.0));
-        float dictToCamera = distance(_WorldSpaceCameraPos, objectCenter);
-
+        // world and noise setup
         float zSin = sin(_worldRot * 0.0174532925);
         float zCos = cos(_worldRot * 0.0174532925);
         float3x3 rotMatrix = float3x3(zCos, -zSin, 0, zSin, zCos, 0, 0, 0, 1); 
-        
+
+        IN.worldPos =  IN.worldPos - _worldCenter;
         IN.worldPos = mul(IN.worldPos, rotMatrix);
 
+        fixed4 noise = tex2D(_NoiseTex,  IN.worldPos.xy/5) * tex2D(_NoiseTex,  IN.worldPos.xy);
+        noise += tex2D(_NoiseTex,  IN.worldPos.xz/5) * tex2D(_NoiseTex,  IN.worldPos.xz);
+        noise += tex2D(_NoiseTex,  IN.worldPos.yz/5) * tex2D(_NoiseTex,  IN.worldPos.yz);
+        noise /= 3;
+
+        float t = noiseTransition(noise, IN.worldPos.xyz, _Season1_t);
+        float offset = (sin(_Time * 10)) * 0.2 * (1 - t); 
         
-        
-        //t *= dictToCamera;
+        //Normal
         float3 normal = IN.normal;
         normal = mul(normal, rotMatrix);
-        //float3 normal = UnpackNormal (tex2D (_BumpMap, IN.uv_MainTex));
-        o.Normal = abs(dot(float3(0,0,1), normal) * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.xy + float2(t,0)) / 1.5) / 3));
-        o.Normal += abs(dot(float3(1,0,0), normal) * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.yz + float2(t,0)) / 1.5) / 3));
-        o.Normal += abs(dot(float3(0,1,0), normal)  * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.xz  + float2(t,0)) / 1.5) / 3));
+        o.Normal = abs(dot(float3(0,0,1), normal) * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.xy + float2(offset,0)) / 1.5) / 3));
+        o.Normal += abs(dot(float3(1,0,0), normal) * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.yz + float2(offset,0)) / 1.5) / 3));
+        o.Normal += abs(dot(float3(0,1,0), normal)  * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.xz  + float2(offset,0)) / 1.5) / 3));
         o.Normal = normalize(o.Normal);
         o.Normal /= 1.5;
 
+
+        //distortion
         o.Albedo = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(o.Normal, 0) / 15 );
         //o.Albedo.g = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(-0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).g;
         //o.Albedo.b = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).b;
-        float3 col = abs(dot(float3(0,0,1), normal) * tex2D (_MainTex, (IN.worldPos.xy + + float2(t,0)) / 1).rgb);
-        col += abs(dot(float3(0,1,0), normal) * tex2D (_MainTex, (IN.worldPos.xz + float2(t,0)) / 1).rgb);
-        col += abs(dot(float3(1,0,0), normal) * tex2D (_MainTex, (IN.worldPos.yz  + float2(t,0)) / 1).rgb);
+
+
+        //Color
+        float3 col = abs(dot(float3(0,0,1), normal) * tex2D (_MainTex, (IN.worldPos.xy + + float2(offset,0)) / 1).rgb);
+        col += abs(dot(float3(0,1,0), normal) * tex2D (_MainTex, (IN.worldPos.xz + float2(offset,0)) / 1).rgb);
+        col += abs(dot(float3(1,0,0), normal) * tex2D (_MainTex, (IN.worldPos.yz  + float2(offset,0)) / 1).rgb);
         col /= 2.5;
-        col = col * (1 - _Season1_t) + _Color * _Season1_t;
+        col = col * (1 - t) + _Color * t;
         
         half rim = 1.0 - saturate(dot (normalize(IN.viewDir), o.Normal));
         o.Emission = _RimColor * pow (rim, _RimPower);

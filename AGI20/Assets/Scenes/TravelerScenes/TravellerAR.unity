@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c8e0c782c554a469a4e04842fc642c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightIntensity: 2
   arCameraManager: {fileID: 1285939036}
 --- !u!108 &171020768
 Light:
