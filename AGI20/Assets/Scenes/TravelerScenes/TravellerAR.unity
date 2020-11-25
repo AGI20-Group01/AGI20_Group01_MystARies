@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -819,6 +819,12 @@ PrefabInstance:
       propertyPath: placeWorldButton
       value: 
       objectReference: {fileID: 884407900}
+    - target: {fileID: 7850016371187945365, guid: b281a68f29cf2b3458fd2774f217e8be,
+        type: 3}
+      propertyPath: indicatorPrefab
+      value: 
+      objectReference: {fileID: 5067761919098961246, guid: 78cfd579e7554cf47ad981e4043789d6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b281a68f29cf2b3458fd2774f217e8be, type: 3}
 --- !u!114 &1955246053 stripped
