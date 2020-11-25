@@ -594,7 +594,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 20
+  far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -841,8 +841,8 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
+    m_Type: 1
+    m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
@@ -910,6 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c8e0c782c554a469a4e04842fc642c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightIntensity: 2
   arCameraManager: {fileID: 617261269}
 --- !u!1 &1761003284
 GameObject:
@@ -1225,7 +1226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PlanePrefab: {fileID: 0}
+  m_PlanePrefab: {fileID: 5520090692359575713, guid: ec073749b883aa246b46fbb64ea3234f,
+    type: 3}
   m_DetectionMode: -1
 --- !u!114 &2137843196
 MonoBehaviour:
