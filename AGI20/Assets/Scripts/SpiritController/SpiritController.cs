@@ -30,58 +30,27 @@ public class SpiritController : MonoBehaviour
         {
             var touch = Input.GetTouch(0);
             acumTime += touch.deltaTime;
-            
-            /* Not working... Maybe remove check for how long it has been pressed
-             * if (Input.GetTouch(0).phase == TouchPhase.Stationary)
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                switch (touch.phase)
                 {
-                    Vector3 hitpos = hit.transform.position;
-                    if (acumTime >= holdTime)
-                    {
-                        groundTracker.ShakeCube(hitpos);
-                    }
+                    case TouchPhase.Began:
+                        Hold(hit);
+                        break;
+
+                    case TouchPhase.Ended:
+                        Hit(hit);
+                        break;
+
                 }
-            }
-            */
-
-
-            if (touch.phase == TouchPhase.Ended)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Vector3 hitpos = hit.transform.position;
-                    if (acumTime < holdTime)
-                    {
-                        Vector3 position = hitpos + hit.normal;
-
-                        groundTracker.AddCube(position, 0);
-                        networkClient.snedAddCube(position);
-                    }
-
-                    else
-                    {
-                        if (hit.collider.tag == "interactablecube")
-                        {
-                            groundTracker.RemoveCube(hitpos);
-                            networkClient.snedRemoveCube(hitpos);
-                        }
-
-                        else
-                        {
-                            groundTracker.ShakeCube(hitpos);
-                        }
-                    }
-                }
-                acumTime = 0;
             }
         }
     }
-        /*  First version
+
+    void TwoTap(Touch touch)
+    {
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -110,11 +79,11 @@ public class SpiritController : MonoBehaviour
 
             }
         }
-        */
+    }
     
 
     
-    void Test()
+    void Pinch()
     {
 
         if (Input.touchCount == 1)
@@ -173,6 +142,45 @@ public class SpiritController : MonoBehaviour
         }
     }
 
+
+    void Hold(RaycastHit hit)
+    {   
+        Vector3 hitpos = hit.transform.position;
+        GameObject block = groundTracker.GetBlock(hitpos);
+        Animator animator = block.GetComponent<Animator>();
+        animator.SetBool("Hold", true);
+    }
+
+    void Hit(RaycastHit hit)
+    {
+        
+        Vector3 hitpos = hit.transform.position;
+        groundTracker.Release(hitpos);
+
+        if (acumTime < holdTime)
+        {
+            Vector3 position = hitpos + hit.normal;
+
+            groundTracker.AddCube(position, 0);
+            networkClient.snedAddCube(position);
+        }
+
+        else
+        {
+            if (hit.collider.tag == "interactablecube")
+            {
+                groundTracker.RemoveCube(hitpos);
+                networkClient.snedRemoveCube(hitpos);
+            }
+
+            else
+            {
+                groundTracker.ShakeCube(hitpos);
+            }
+        }
+        
+        acumTime = 0;
+    }
 }
 
 

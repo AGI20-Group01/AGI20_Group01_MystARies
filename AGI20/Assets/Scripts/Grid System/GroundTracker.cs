@@ -138,7 +138,7 @@ public class GroundTracker : MonoBehaviour
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
         if (ground.ContainsKey(gridPos))
         {
-            Debug.Log("Found object! " + gridPos);
+            //Debug.Log("Found object! " + gridPos);
 
             GameObject block = ground[gridPos];
 
@@ -147,7 +147,42 @@ public class GroundTracker : MonoBehaviour
         }
         else
         {
-            Debug.Log("Object not in ground"+ gridPos);
+            //Debug.Log("Object not in ground"+ gridPos);
+        }
+    }
+
+    public void Holding(Vector3 pos)
+    {
+        Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
+        if (ground.ContainsKey(gridPos))
+        {
+            GameObject block = ground[gridPos];
+
+            Animator animator = block.GetComponent<Animator>();
+            animator.SetBool("Hold", true);
+        }
+
+    }
+
+    public GameObject GetBlock(Vector3 pos)
+    {
+        GameObject block = null;
+        Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
+        if (ground.ContainsKey(gridPos))
+        {
+            block = ground[gridPos]; 
+        }
+        return block;
+    }
+
+    public void Release(Vector3 pos)
+    {
+        Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
+        if (ground.ContainsKey(gridPos))
+        {
+            GameObject block = ground[gridPos];
+            Animator animator = block.GetComponent<Animator>();
+            animator.SetBool("Hold", false);
         }
     }
 
