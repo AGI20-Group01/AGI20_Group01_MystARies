@@ -12,10 +12,11 @@ Shader "Custom/WaterShader"
       _RimPower ("Rim Power", Range(0.5,8.0)) = 3.0
     }
     SubShader {
-      Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-      //Cull Off // this is optional, I think it looks good with ice
-Blend SrcAlpha OneMinusSrcAlpha
-    GrabPass { "_MyGrabTexture" }
+        Tags { "Queue"="Transparent" "RenderType"="Transparent" }
+        LOD 200
+        //Cull Off // this is optional, I think it looks good with ice
+        //Blend SrcAlpha OneMinusSrcAlpha
+        GrabPass { "_MyGrabTexture" }
 
 
     CGPROGRAM
@@ -102,7 +103,7 @@ Blend SrcAlpha OneMinusSrcAlpha
 
 
         //distortion
-        o.Albedo = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(o.Normal, 0) / 15 );
+        o.Albedo = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(o.Normal, 0) / 10 );
         //o.Albedo.g = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(-0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).g;
         //o.Albedo.b = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).b;
 
