@@ -30,6 +30,12 @@ public class PlacementManager : MonoBehaviour
     public GameObject PointerObj;
     private bool PlacingState;
 
+    public GameObject worldButton;
+    public GameObject arInfo;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +48,9 @@ public class PlacementManager : MonoBehaviour
         PlacingState = true;
 
         PointerObj.SetActive(false);
+
+        worldButton.gameObject.SetActive(false);
+        arInfo.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -52,9 +61,16 @@ public class PlacementManager : MonoBehaviour
             arRaycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
             if (hits.Count > 0)
             {
+                arInfo.gameObject.SetActive(false);
+                worldButton.gameObject.SetActive(true);
+
                 transform.position = hits[0].pose.position;
                 transform.rotation = hits[0].pose.rotation;
                 if (!PointerObj.activeInHierarchy) { PointerObj.SetActive(true); }
+            } else {
+                PointerObj.SetActive(false);
+                worldButton.gameObject.SetActive(false);
+                arInfo.gameObject.SetActive(true);
             }
         }  
     }
