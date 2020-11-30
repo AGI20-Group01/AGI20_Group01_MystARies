@@ -11,9 +11,13 @@ public class SpiritController : MonoBehaviour
     public GroundTracker groundTracker;
     [SerializeField]
     private NetworkClient networkClient;
-   
 
-   void Start()
+
+    private float holdTime = 0.8f; //or whatever
+    private float acumTime = 0;
+
+
+    void Start()
     {
        arRaycastManager = FindObjectOfType<ARRaycastManager>();
        networkClient = FindObjectOfType<NetworkClient>();
@@ -25,41 +29,61 @@ public class SpiritController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             var touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Ended)
+            acumTime += touch.deltaTime;
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                switch (touch.phase)
                 {
-                    Vector3 hitpos = hit.transform.position;
-                    if (Input.touchCount == 1)
-                    {
-                        Vector3 position = hitpos + hit.normal;
+                    case TouchPhase.Began:
+                        Hold(hit);
+                        break;
 
-                        groundTracker.AddCube(position, 0);
-                        networkClient.snedAddCube(position);
-                    }
-                    if (Input.touchCount == 2)
-                    {
+                    case TouchPhase.Ended:
+                        Hit(hit);
+                        break;
 
-                        if (hit.collider.tag == "interactablecube")
-                        {
-                            groundTracker.RemoveCube(hitpos);
-                            networkClient.snedRemoveCube(hitpos);
-                            //DeleteCube(hit.collider.gameObject);
-                        }
-                        else
-                        {
-                            groundTracker.ShakeCube(hitpos);
-                        }
-
-                    }
                 }
             }
         }
     }
 
-    void Test()
+    void TwoTap(Touch touch)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 hitpos = hit.transform.position;
+            if (Input.touchCount == 1)
+            {
+                Vector3 position = hitpos + hit.normal;
+
+                groundTracker.AddCube(position, 0);
+                networkClient.snedAddCube(position);
+            }
+            if (Input.touchCount == 2)
+            {
+
+                if (hit.collider.tag == "interactablecube")
+                {
+                    groundTracker.RemoveCube(hitpos);
+                    networkClient.snedRemoveCube(hitpos);
+                    //DeleteCube(hit.collider.gameObject);
+                }
+                else
+                {
+                    groundTracker.ShakeCube(hitpos);
+                }
+
+            }
+        }
+    }
+    
+
+    
+    void Pinch()
     {
 
         if (Input.touchCount == 1)
@@ -104,7 +128,7 @@ public class SpiritController : MonoBehaviour
                     {
                         GameObject one = hitone.transform.parent.gameObject;
                         GameObject zero = hitzero.transform.parent.gameObject;
-                        if( one.GetInstanceID() == zero.GetInstanceID())
+                        if (one.GetInstanceID() == zero.GetInstanceID())
                         {
                             Vector3 hitpos = hitone.transform.position;
                             Vector3 position = hitpos + hitone.normal;
@@ -115,11 +139,48 @@ public class SpiritController : MonoBehaviour
                     }
                 }
             }
-
-            }
+        }
     }
-    
 
+
+    void Hold(RaycastHit hit)
+    {   
+        Vector3 hitpos = hit.transform.position;
+        GameObject block = groundTracker.GetBlock(hitpos);
+        Animator animator = block.GetComponent<Animator>();
+        animator.SetBool("Hold", true);
+    }
+
+    void Hit(RaycastHit hit)
+    {
+        
+        Vector3 hitpos = hit.transform.position;
+        groundTracker.Release(hitpos);
+
+        if (acumTime < holdTime)
+        {
+            Vector3 position = hitpos + hit.normal;
+
+            groundTracker.AddCube(position, 0);
+            networkClient.snedAddCube(position);
+        }
+
+        else
+        {
+            if (hit.collider.tag == "interactablecube")
+            {
+                groundTracker.RemoveCube(hitpos);
+                networkClient.snedRemoveCube(hitpos);
+            }
+
+            else
+            {
+                groundTracker.ShakeCube(hitpos);
+            }
+        }
+        
+        acumTime = 0;
+    }
 }
 
 
