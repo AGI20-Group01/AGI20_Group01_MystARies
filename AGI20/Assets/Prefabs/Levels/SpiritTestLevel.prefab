@@ -48,11 +48,11 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 1.65
   MinDistance: 1
   MaxDistance: 2
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -100,7 +100,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.6638889
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -982,15 +982,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1213267778612387777, guid: c859c47ee3336d44abc4a4e1b5323688, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c859c47ee3336d44abc4a4e1b5323688, type: 3}
---- !u!1 &74648771596661266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4064497896230083486, guid: c859c47ee3336d44abc4a4e1b5323688,
-    type: 3}
-  m_PrefabInstance: {fileID: 4138469291050527116}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6484584131685344376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6958928998886837748, guid: c859c47ee3336d44abc4a4e1b5323688,
+    type: 3}
+  m_PrefabInstance: {fileID: 4138469291050527116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &74648771596661266 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4064497896230083486, guid: c859c47ee3336d44abc4a4e1b5323688,
     type: 3}
   m_PrefabInstance: {fileID: 4138469291050527116}
   m_PrefabAsset: {fileID: 0}
