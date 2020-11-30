@@ -55,8 +55,8 @@
             textureCoordinate *= dictToCamera / 1.2;
             
 
-            float tx = (1 + sin(_Time[0]/3)) / 2;
-            float ty = (1 + cos(_Time[0]/3)) / 2;
+            float tx = (1 + sin(_Time/3)) / 2;
+            float ty = (1 + cos(_Time/3)) / 2;
             fixed4 offsetX = tex2D(_NoiseTex, textureCoordinate + float2(tx, ty));
             fixed4 offsetY = tex2D(_NoiseTex, textureCoordinate + float2(ty, tx));
             // texturs
@@ -64,9 +64,9 @@
 
             textureCoordinate += ComputeScreenPos(objectCenter);
 
-            float sinX = sin ( _RotationSpeed * _Time );
-            float cosX = cos ( _RotationSpeed * _Time );
-            float sinY = sin ( _RotationSpeed * _Time );
+            float sinX = sin ( _RotationSpeed * _Time/3 );
+            float cosX = cos ( _RotationSpeed * _Time/3 );
+            float sinY = sin ( _RotationSpeed * _Time/3 );
             float2x2 rotationMatrix = float2x2( cosX, -sinX, sinY, cosX);
 
             textureCoordinate = mul ( textureCoordinate, rotationMatrix );

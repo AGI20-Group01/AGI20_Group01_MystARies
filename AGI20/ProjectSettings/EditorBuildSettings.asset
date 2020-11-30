@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/UI/test.unity
     guid: 91e106867b5a61043b7b837debd90f67
   - enabled: 0
-    path: Assets/Scenes/TravelerScenes/TravellerAR_old.unity
+    path: 
     guid: f2a466f0e935da24d975d9a244d0b557
   - enabled: 1
     path: Assets/Scenes/SpiritScenes/SpiritScene.unity
@@ -20,4 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TravelerScenes/TravellerAR.unity
     guid: 6ffd5f247d8b649f6a1f76130ed34b6f
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/SceneLoad/LoadingScene.unity
+    guid: 8a318095184951c4ba017db8e148a5d0
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 3193c02917a9b8948867ff46234b10e1,
+      type: 2}

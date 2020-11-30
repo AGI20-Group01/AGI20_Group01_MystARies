@@ -1,6 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
-Shader "AR/AR Plane Shader"
+﻿Shader "AR/AR Plane Shader"
 {
     Properties
     {
@@ -11,12 +9,13 @@ Shader "AR/AR Plane Shader"
     SubShader
     {
  
-        Tags {"Queue"="AlphaTest" }
+        Tags {"Queue"="AlphaTest"}
  
         Pass
         {
             Tags {"LightMode" = "ForwardBase" }
-            Cull Back
+            //Cull Back
+            ZWrite Off
             Blend SrcAlpha OneMinusSrcAlpha
             CGPROGRAM
             #pragma vertex vert

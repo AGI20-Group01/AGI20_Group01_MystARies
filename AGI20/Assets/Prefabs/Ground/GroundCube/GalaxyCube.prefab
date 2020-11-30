@@ -95,9 +95,10 @@ GameObject:
   - component: {fileID: 5651890572739064845}
   - component: {fileID: 1625381853471218860}
   - component: {fileID: 3122221581436714106}
+  - component: {fileID: -4696887594235219262}
   m_Layer: 9
   m_Name: GalaxyCube
-  m_TagString: Untagged
+  m_TagString: GroundeCube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -259,6 +260,20 @@ MonoBehaviour:
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
   m_Area: 0
+--- !u!114 &-4696887594235219262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289178351093562254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f83d13cb0013d4688699e66d305df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialCreater: {fileID: 0}
+  id: 0
 --- !u!1 &5201433278741141439
 GameObject:
   m_ObjectHideFlags: 0

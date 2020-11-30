@@ -22,6 +22,7 @@ public class GroundCube : MonoBehaviour
 
 
     public void SetUnder(bool start, int pos) {
+        if (!materialCreater) { return; }
         surroundingGrund[pos] = start;
         updateMaterial();
     }

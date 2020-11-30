@@ -785,7 +785,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1041894313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84c8e0c782c554a469a4e04842fc642c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightIntensity: 2
+  lightIntensity: 1
   arCameraManager: {fileID: 617261269}
 --- !u!1 &1355445701
 GameObject:

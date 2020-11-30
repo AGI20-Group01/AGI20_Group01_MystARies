@@ -31,6 +31,7 @@
                     Brightness = args.lightEstimation.averageBrightness.Value;
                     mainLight.intensity = Brightness.Value * lightIntensity;
                     RenderSettings.ambientLight = new Vector4(1, 1, 1, 1) * lightIntensity * Brightness.Value;
+                    Shader.SetGlobalFloat("_lightIntensity", lightIntensity);
                }
 
                if (args.lightEstimation.averageColorTemperature.HasValue) {

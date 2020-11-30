@@ -9,11 +9,11 @@ public class LoaderBar : MonoBehaviour
 
     void Awake()
     {
-        image.transform.GetComponent<Image>();
+        image = GetComponent<Image>();
     } 
 
     void Update()
     {
-        image.fillAmount = SceneHandler.GetLoadingProgress();
+        image.fillAmount = 1 - SceneHandler.GetLoadingProgress();
     }
 }

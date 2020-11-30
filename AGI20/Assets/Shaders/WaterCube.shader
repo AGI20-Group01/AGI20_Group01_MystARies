@@ -30,6 +30,8 @@ Shader "Custom/WaterShader"
         float3 viewDir;
     };
 
+
+    uniform float _lightIntensity;
     uniform float _Season1_t;
     uniform float3 _worldCenter;
     uniform float3 _worldRot;
@@ -93,30 +95,44 @@ Shader "Custom/WaterShader"
         float offset = (sin(_Time * 10)) * 0.2 * (1 - t); 
         
         //Normal
-        float3 normal = IN.normal;
-        normal = mul(normal, rotMatrix);
-        o.Normal = abs(dot(float3(0,0,1), normal) * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.xy + float2(offset,0)) / 1.5) / 3));
-        o.Normal += abs(dot(float3(1,0,0), normal) * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.yz + float2(offset,0)) / 1.5) / 3));
-        o.Normal += abs(dot(float3(0,1,0), normal)  * UnpackNormal (tex2D (_BumpMap, (IN.worldPos.xz  + float2(offset,0)) / 1.5) / 3));
-        o.Normal = normalize(o.Normal);
-        o.Normal /= 1.5;
+
+        float3 blend = float3(1,1,1);
+
+        float2 uvX = IN.worldPos.zy + float2(offset,0);
+        float2 uvY = IN.worldPos.xz + float2(offset,0); 
+        float2 uvZ = IN.worldPos.xy + float2(offset,0); 
+
+        half3 tnormalX = UnpackNormal(tex2D(_BumpMap, uvX));
+        half3 tnormalY = UnpackNormal(tex2D(_BumpMap, uvY));
+        half3 tnormalZ = UnpackNormal(tex2D(_BumpMap, uvZ));
+
+        tnormalX = half3(tnormalX.xy + IN.normal.zy, IN.normal.x);
+        tnormalY = half3(tnormalY.xy + IN.normal.xz, IN.normal.y);
+        tnormalZ = half3(tnormalZ.xy + IN.normal.xy, IN.normal.z);
+
+        half3 normal = normalize(
+            tnormalX.zyx * blend.x +
+            tnormalY.xzy * blend.y +
+            tnormalZ.xyz * blend.z
+        );
 
 
         //distortion
-        o.Albedo = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(o.Normal, 0) / 10 );
+        o.Albedo = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(normal, 0) / 10 );
         //o.Albedo.g = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(-0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).g;
         //o.Albedo.b = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).b;
 
 
         //Color
-        float3 col = abs(dot(float3(0,0,1), normal) * tex2D (_MainTex, (IN.worldPos.xy + + float2(offset,0)) / 1).rgb);
+        float3 col = abs(dot(float3(0,0,1), normal) * tex2D (_MainTex, (IN.worldPos.xy + float2(offset,0)) / 1).rgb);
         col += abs(dot(float3(0,1,0), normal) * tex2D (_MainTex, (IN.worldPos.xz + float2(offset,0)) / 1).rgb);
         col += abs(dot(float3(1,0,0), normal) * tex2D (_MainTex, (IN.worldPos.yz  + float2(offset,0)) / 1).rgb);
         col /= 2.5;
+
         col = col * (1 - t) + _Color * t;
         
         half rim = 1.0 - saturate(dot (normalize(IN.viewDir), o.Normal));
-        o.Emission = _RimColor * pow (rim, _RimPower);
+        o.Emission = _RimColor * pow (rim, _RimPower) * _lightIntensity;
         o.Albedo += col;
         o.Alpha = 1;
     }

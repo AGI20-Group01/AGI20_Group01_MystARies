@@ -7,19 +7,19 @@ public class MenuUI : MonoBehaviour
 {
     public void startSpirit()
     {
-        SceneManager.LoadScene("SpiritScene");
-        //SceneHandler.Load(SceneHandler.Scene.SpiritScene);
+        //SceneManager.LoadScene("SpiritScene");
+        SceneHandler.Load(SceneHandler.Scene.SpiritScene);
     }
 
     public void startTraveller()
     {
-        SceneManager.LoadScene("TravellerAR");
-        //SceneHandler.Load(SceneHandler.Scene.TravellerAR);
+        //SceneManager.LoadScene("TravellerAR");
+        SceneHandler.Load(SceneHandler.Scene.TravellerAR);
     }
 
     public void startMenu()
     {
-        SceneManager.LoadScene("test");
-        //SceneHandler.Load(SceneHandler.Scene.TravellerAR);
+        //SceneManager.LoadScene("test");
+        SceneHandler.Load(SceneHandler.Scene.test);
     }
 }

@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 5057609396437900975}
   - component: {fileID: 2220613660318037518}
   - component: {fileID: 2525370987997927128}
+  - component: {fileID: 1423662981281528066}
   m_Layer: 9
   m_Name: GrassCube
-  m_TagString: Untagged
+  m_TagString: interactablecube
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,6 +181,20 @@ MonoBehaviour:
   m_Bidirectional: 1
   m_AutoUpdatePosition: 0
   m_Area: 0
+--- !u!114 &1423662981281528066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2736554958570672428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34f83d13cb0013d4688699e66d305df5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialCreater: {fileID: 11400000, guid: d4d84d4c677890245a53dbc05d0f6cab, type: 2}
+  id: 0
 --- !u!1 &2736554958747972194
 GameObject:
   m_ObjectHideFlags: 0
