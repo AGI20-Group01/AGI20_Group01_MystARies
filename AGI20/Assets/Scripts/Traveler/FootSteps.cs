@@ -16,7 +16,7 @@ public class FootSteps : MonoBehaviour
 
     private void Step(){
         AudioClip clip= GetRandomClip();
-        Debug.Log("Playing audio: ", clip);
+        //Debug.Log("Playing audio: ", clip);
         audioSource.PlayOneShot(clip);
     }
 
@@ -25,15 +25,5 @@ public class FootSteps : MonoBehaviour
         return clips[UnityEngine.Random.Range(0,clips.Length)];
 
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }
