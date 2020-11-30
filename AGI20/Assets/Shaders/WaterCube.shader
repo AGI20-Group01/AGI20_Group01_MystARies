@@ -118,7 +118,7 @@ Shader "Custom/WaterShader"
 
 
         //distortion
-        o.Albedo = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(normal, 0) / 10 );
+        o.Albedo = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(normal, 0) / 15 );
         //o.Albedo.g = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(-0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).g;
         //o.Albedo.b = tex2Dproj( _MyGrabTexture, UNITY_PROJ_COORD(IN.grabUV) + float4(0.1, 0, 0, 0) + float4(o.Normal, 0) / 20).b;
 
@@ -131,8 +131,8 @@ Shader "Custom/WaterShader"
 
         col = col * (1 - t) + _Color * t;
         
-        half rim = 1.0 - saturate(dot (normalize(IN.viewDir), o.Normal));
-        o.Emission = _RimColor * pow (rim, _RimPower) * _lightIntensity;
+        //half rim = 1.0 - saturate(dot (normalize(IN.viewDir), o.Normal));
+        //o.Emission = _RimColor * pow (rim, _RimPower) * _lightIntensity;
         o.Albedo += col;
         o.Alpha = 1;
     }
