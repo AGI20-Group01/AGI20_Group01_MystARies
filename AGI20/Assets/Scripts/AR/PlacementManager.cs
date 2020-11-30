@@ -15,7 +15,6 @@ public class PlacementManager : MonoBehaviour
 {
     // from ARCreateWorldAnchor
     public GameObject levelPrefab;
-    public GameObject indicatorPrefab;
     private GroundTracker groundTracker;
 
     private ARReferencePointManager arReferencePointManager;
@@ -67,7 +66,6 @@ public class PlacementManager : MonoBehaviour
             arRaycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
             if (hits.Count > 0)
             {
-                //PlacingState = WorldAnchor.InstantiateAnchor(arRaycastHits[0].pose);
                 Pose hitPose = hits[0].pose;
                 hitPose.rotation = Quaternion.Euler(0, 0, 0);
                 ARReferencePoint referencePoint = arReferencePointManager.AddReferencePoint(hitPose);
@@ -76,7 +74,6 @@ public class PlacementManager : MonoBehaviour
                 {
                     referencePoints.Add(referencePoint);
                     GameObject obj1 = Instantiate(levelPrefab, hitPose.position, hitPose.rotation);
-                    GameObject indicator = Instantiate(indicatorPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                     groundTracker = FindObjectOfType <GroundTracker>();
                     groundTracker.snapAllOnjects();
                     PlacingState = false;
