@@ -82,7 +82,6 @@ public class PlacementManager : MonoBehaviour
             arRaycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.Planes);
             if (hits.Count > 0)
             {
-                //PlacingState = WorldAnchor.InstantiateAnchor(arRaycastHits[0].pose);
                 Pose hitPose = hits[0].pose;
                 hitPose.rotation = Quaternion.Euler(0, 0, 0);
                 ARReferencePoint referencePoint = arReferencePointManager.AddReferencePoint(hitPose);

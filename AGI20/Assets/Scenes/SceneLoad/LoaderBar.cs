@@ -14,6 +14,6 @@ public class LoaderBar : MonoBehaviour
 
     void Update()
     {
-        image.fillAmount = 1 - SceneHandler.GetLoadingProgress();
+        image.fillAmount = SceneHandler.GetLoadingProgress();
     }
 }
