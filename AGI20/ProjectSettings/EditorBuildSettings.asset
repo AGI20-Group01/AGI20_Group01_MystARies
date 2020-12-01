@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: 
     guid: f2a466f0e935da24d975d9a244d0b557
   - enabled: 1
-    path: Assets/Scenes/SpiritScenes/SpiritScene.unity
+    path: Assets/Scenes/SpiritScenes/EmilSpiritScene.unity
     guid: a5957e683f1482c4790b32baae5074a6
   - enabled: 1
-    path: Assets/Scenes/TravelerScenes/TravellerAR.unity
+    path: Assets/Scenes/TravelerScenes/EmilTravellerAR.unity
     guid: 6ffd5f247d8b649f6a1f76130ed34b6f
   - enabled: 1
     path: Assets/Scenes/SceneLoad/LoadingScene.unity
