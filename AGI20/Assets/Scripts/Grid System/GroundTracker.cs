@@ -145,12 +145,8 @@ public class GroundTracker : MonoBehaviour
             Animator animator = block.GetComponent<Animator>();
             animator.SetTrigger("Shake");
         }
-        else
-        {
-            //Debug.Log("Object not in ground"+ gridPos);
-        }
     }
-
+/*
     public void Holding(Vector3 pos)
     {
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
@@ -159,10 +155,10 @@ public class GroundTracker : MonoBehaviour
             GameObject block = ground[gridPos];
 
             Animator animator = block.GetComponent<Animator>();
-            animator.SetBool("Hold", true);
+            animator.SetBool("Holding", true);
         }
 
-    }
+    }*/
 
     public GameObject GetBlock(Vector3 pos)
     {
@@ -175,17 +171,17 @@ public class GroundTracker : MonoBehaviour
         return block;
     }
 
-    public void Release(Vector3 pos)
+ /*   public void Release(Vector3 pos)
     {
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
         if (ground.ContainsKey(gridPos))
         {
             GameObject block = ground[gridPos];
             Animator animator = block.GetComponent<Animator>();
-            animator.SetBool("Hold", false);
+            animator.SetBool("Holding", false);
         }
     }
-
+    */
         private IEnumerator BreakBlock(GameObject block)
     {
         MeshRenderer mr = block.GetComponentInChildren<MeshRenderer>();

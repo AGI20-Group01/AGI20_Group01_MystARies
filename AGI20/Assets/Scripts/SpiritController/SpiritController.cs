@@ -16,37 +16,29 @@ public class SpiritController : MonoBehaviour
     private float holdTime = 0.8f; //or whatever
     private float acumTime = 0;
 
-
     void Start()
     {
-       arRaycastManager = FindObjectOfType<ARRaycastManager>();
-       networkClient = FindObjectOfType<NetworkClient>();
+        arRaycastManager = FindObjectOfType<ARRaycastManager>();
+        networkClient = FindObjectOfType<NetworkClient>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
+        /*if (Input.touchCount > 0)
         {
             var touch = Input.GetTouch(0);
             acumTime += touch.deltaTime;
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (touch.phase == TouchPhase.Ended)
             {
-                switch (touch.phase)
+                Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                RaycastHit hit;
+                 (Physics.Raycast(ray, out hit))
                 {
-                    case TouchPhase.Began:
-                        Hold(hit);
-                        break;
-
-                    case TouchPhase.Ended:
-                        Hit(hit);
-                        break;
-
+                    Hit(hit);
                 }
             }
-        }
+        }*/
     }
 
     void TwoTap(Touch touch)
@@ -80,9 +72,9 @@ public class SpiritController : MonoBehaviour
             }
         }
     }
-    
 
-    
+
+
     void Pinch()
     {
 
@@ -143,43 +135,65 @@ public class SpiritController : MonoBehaviour
     }
 
 
-    void Hold(RaycastHit hit)
-    {   
-        Vector3 hitpos = hit.transform.position;
-        GameObject block = groundTracker.GetBlock(hitpos);
-        Animator animator = block.GetComponent<Animator>();
-        animator.SetBool("Hold", true);
-    }
+    /*void Hold(RaycastHit hit)
+    {
+        if (holding && !playing)
+        {
+            playing = true;
+            Vector3 hitpos = hit.transform.position;
+            groundTracker.Holding(hitpos);
+        }
+       
+      
+    }*/
 
     void Hit(RaycastHit hit)
     {
-        
-        Vector3 hitpos = hit.transform.position;
-        groundTracker.Release(hitpos);
 
+        Vector3 hitpos = hit.transform.position;
+       // groundTracker.Release(hitpos);
+       
         if (acumTime < holdTime)
         {
             Vector3 position = hitpos + hit.normal;
 
             groundTracker.AddCube(position, 0);
             networkClient.snedAddCube(position);
+            Debug.Log("Add");
         }
 
+        else if (hit.collider.tag == "interactablecube")
+        {
+            groundTracker.RemoveCube(hitpos);
+            Debug.Log("Break");
+        }
+        else if(hit.collider.tag == "unbreakable")
+        {
+            groundTracker.ShakeCube(hitpos);
+            Debug.Log("unbreakble");
+        }
         else
         {
-            if (hit.collider.tag == "interactablecube")
-            {
-                groundTracker.RemoveCube(hitpos);
-                networkClient.snedRemoveCube(hitpos);
-            }
-
-            else
-            {
-                groundTracker.ShakeCube(hitpos);
-            }
+            Debug.Log("Something is wrong");
         }
-        
+
         acumTime = 0;
+    } 
+
+    public void TestBreak()
+    {
+        Vector3 pos = new Vector3(0, 0, 2);
+        Ray ray = Camera.main.ScreenPointToRay(pos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Debug.Log("hit");
+            Hit(hit);
+        }
+        else
+        {
+            Debug.Log("Miss");
+        }
     }
 }
 

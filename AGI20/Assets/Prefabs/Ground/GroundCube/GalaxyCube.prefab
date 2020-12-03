@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: -4696887594235219262}
   m_Layer: 9
   m_Name: GalaxyCube
-  m_TagString: GroundeCube
+  m_TagString: unbreakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3289178351093562254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 11d2d154ef6f70d45b241dc906366616, type: 2}
   m_CullingMode: 0
