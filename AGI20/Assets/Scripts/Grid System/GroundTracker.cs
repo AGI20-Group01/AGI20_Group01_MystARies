@@ -27,7 +27,7 @@ public class GroundTracker : MonoBehaviour
     
     private void snapAllOnjects(Transform parent, Dictionary<Vector3, GameObject> ground) {
         foreach(Transform child in parent) {
-            if (child.tag != "GroundeCube" && child.tag != "interactablecube") {
+            if (child.tag != "unbreakable" && child.tag != "interactablecube") {
                 snapAllOnjects(child, ground);
             } else {
                 Vector3 pos = child.position;
@@ -109,25 +109,31 @@ public class GroundTracker : MonoBehaviour
         Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
         Vector3 gridIndex = grid.GetGridCellIndex(pos);
 
-        if (ground.ContainsKey(gridIndex)) {
-            StartCoroutine(BreakBlock(ground[gridIndex]));  // trigger particle effect
-            //Destroy(ground[gridIndex]);
+        if (ground.ContainsKey(gridIndex))
+        {
 
+            StartCoroutine(BreakBlock(ground[gridIndex]));  // trigger particle effect
+                                                            //Destroy(ground[gridIndex]);
             ground.Remove(gridIndex);
 
-            if (ground.ContainsKey(gridIndex + new Vector3(0,-1,0))) {
-                ground[(gridIndex + new Vector3(0,-1,0))].GetComponent<GroundCube>().SetUnder(false, 0);
+            if (ground.ContainsKey(gridIndex + new Vector3(0, -1, 0)))
+            {
+                ground[(gridIndex + new Vector3(0, -1, 0))].GetComponent<GroundCube>().SetUnder(false, 0);
             }
-            if (ground.ContainsKey(gridIndex + new Vector3(0,1,0))) {
-                ground[(gridIndex + new Vector3(0,1,0))].GetComponent<GroundCube>().SetUnder(false, 2);
+            if (ground.ContainsKey(gridIndex + new Vector3(0, 1, 0)))
+            {
+                ground[(gridIndex + new Vector3(0, 1, 0))].GetComponent<GroundCube>().SetUnder(false, 2);
             }
-            if (ground.ContainsKey(gridIndex + new Vector3(-1,0,0))) {
-                ground[(gridIndex + new Vector3(-1,0,0))].GetComponent<GroundCube>().SetUnder(false, 1);
+            if (ground.ContainsKey(gridIndex + new Vector3(-1, 0, 0)))
+            {
+                ground[(gridIndex + new Vector3(-1, 0, 0))].GetComponent<GroundCube>().SetUnder(false, 1);
             }
-            if (ground.ContainsKey(gridIndex + new Vector3(1,0,0))) {
-                ground[(gridIndex + new Vector3(1,0,0))].GetComponent<GroundCube>().SetUnder(false, 3);
+            if (ground.ContainsKey(gridIndex + new Vector3(1, 0, 0)))
+            {
+                ground[(gridIndex + new Vector3(1, 0, 0))].GetComponent<GroundCube>().SetUnder(false, 3);
             }
         }
+
         if (navBaker) {
             navBaker.AddToSurface();
         }      
@@ -135,30 +141,37 @@ public class GroundTracker : MonoBehaviour
 
     public void ShakeCube(Vector3 pos)
     {
-        Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
-        if (ground.ContainsKey(gridPos))
-        {
-            //Debug.Log("Found object! " + gridPos);
+        Vector3 gridIndex = grid.GetGridCellIndex(pos);
 
-            GameObject block = ground[gridPos];
+        GameObject block = ground[gridIndex];
 
-            Animator animator = block.GetComponent<Animator>();
-            animator.SetTrigger("Shake");
-        }
+        Animator animator = block.GetComponent<Animator>();
+        animator.SetTrigger("Shake");
+
     }
-/*
+
     public void Holding(Vector3 pos)
     {
-        Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
-        if (ground.ContainsKey(gridPos))
+        Vector3 gridIndex = grid.GetGridCellIndex(pos);
+        if (ground.ContainsKey(gridIndex))
         {
-            GameObject block = ground[gridPos];
+            GameObject block = ground[gridIndex];
 
             Animator animator = block.GetComponent<Animator>();
             animator.SetBool("Holding", true);
         }
 
-    }*/
+    }
+    public void Release(Vector3 pos)
+    {
+        Vector3 gridIndex = grid.GetGridCellIndex(pos);
+        if (ground.ContainsKey(gridIndex))
+        {
+            GameObject block = ground[gridIndex];
+            Animator animator = block.GetComponent<Animator>();
+            animator.SetBool("Holding", false);
+        }
+    }
 
     public GameObject GetBlock(Vector3 pos)
     {
@@ -171,17 +184,8 @@ public class GroundTracker : MonoBehaviour
         return block;
     }
 
- /*   public void Release(Vector3 pos)
-    {
-        Vector3 gridPos = grid.GetNearestPointOnGrid(pos);
-        if (ground.ContainsKey(gridPos))
-        {
-            GameObject block = ground[gridPos];
-            Animator animator = block.GetComponent<Animator>();
-            animator.SetBool("Holding", false);
-        }
-    }
-    */
+    
+    
         private IEnumerator BreakBlock(GameObject block)
     {
         MeshRenderer mr = block.GetComponentInChildren<MeshRenderer>();
@@ -206,7 +210,7 @@ public class GroundTracker : MonoBehaviour
     
     public void TestBreak()
     {
-        RemoveCube(new Vector3(0, 0, 0));
+        ShakeCube(new Vector3(0, 0, 1));
     }
 
 }

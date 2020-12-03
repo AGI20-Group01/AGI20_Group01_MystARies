@@ -15,6 +15,7 @@ public class SpiritController : MonoBehaviour
 
     private float holdTime = 0.8f; //or whatever
     private float acumTime = 0;
+    private Vector3 heldPos;
 
     void Start()
     {
@@ -25,20 +26,35 @@ public class SpiritController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.touchCount > 0)
+        if (Input.touchCount > 0)
         {
             var touch = Input.GetTouch(0);
             acumTime += touch.deltaTime;
-            if (touch.phase == TouchPhase.Ended)
+            switch (touch.phase)
             {
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                RaycastHit hit;
-                 (Physics.Raycast(ray, out hit))
-                {
-                    Hit(hit);
-                }
-            }
-        }*/
+                case TouchPhase.Began:
+                    {
+                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit))
+                        {
+                            Hold(hit);
+                        }
+                        break;
+                    }
+                case TouchPhase.Ended:
+                    {
+                        Ray ray = Camera.main.ScreenPointToRay(touch.position);
+                        RaycastHit hit;
+                        if (Physics.Raycast(ray, out hit))
+                        {
+                            Hit(hit);
+                        }
+                        break;
+                    }
+        }
+        
+        }
     }
 
     void TwoTap(Touch touch)
@@ -135,23 +151,20 @@ public class SpiritController : MonoBehaviour
     }
 
 
-    /*void Hold(RaycastHit hit)
+    void Hold(RaycastHit hit)
     {
-        if (holding && !playing)
-        {
-            playing = true;
             Vector3 hitpos = hit.transform.position;
+            heldPos = hitpos;
             groundTracker.Holding(hitpos);
-        }
-       
+        
       
-    }*/
+    }
 
     void Hit(RaycastHit hit)
     {
 
         Vector3 hitpos = hit.transform.position;
-       // groundTracker.Release(hitpos);
+        groundTracker.Release(heldPos);
        
         if (acumTime < holdTime)
         {
@@ -161,7 +174,7 @@ public class SpiritController : MonoBehaviour
             networkClient.snedAddCube(position);
             Debug.Log("Add");
         }
-
+        
         else if (hit.collider.tag == "interactablecube")
         {
             groundTracker.RemoveCube(hitpos);
@@ -183,9 +196,9 @@ public class SpiritController : MonoBehaviour
     public void TestBreak()
     {
         Vector3 pos = new Vector3(0, 0, 2);
-        Ray ray = Camera.main.ScreenPointToRay(pos);
+        //Ray ray = Camera.main.ScreenPointToRay(pos);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(pos, Vector3.forward, out hit))
         {
             Debug.Log("hit");
             Hit(hit);
