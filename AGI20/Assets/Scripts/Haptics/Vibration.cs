@@ -11,6 +11,9 @@ namespace RDG
     /// </summary>
     public static class Vibration
     {
+        // Toggle for turning off or on
+        public static bool CancelVibration = false;
+        
         // Component Parameters
         public static logLevel LogLevel = logLevel.Disabled;
 
