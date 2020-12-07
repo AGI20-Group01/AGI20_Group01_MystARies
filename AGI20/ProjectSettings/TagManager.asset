@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - interactablecube
+  - unbreakable
   - GroundeCube
   layers:
   - Default

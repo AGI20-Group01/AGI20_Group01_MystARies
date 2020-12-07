@@ -2,6 +2,9 @@
  using UnityEngine.XR.ARFoundation;
  
      public class LigthEstimation : MonoBehaviour {
+
+          public float lightIntensity = 1;
+
           [SerializeField] 
           private ARCameraManager arCameraManager;
           private Light mainLight;
@@ -26,19 +29,18 @@
           private void FrameUpdated (ARCameraFrameEventArgs args) {
                if (args.lightEstimation.averageBrightness.HasValue) {
                     Brightness = args.lightEstimation.averageBrightness.Value;
-                    mainLight.intensity = Brightness.Value;
-                    RenderSettings.ambientLight = new Vector4(1, 1, 1, 1) * Brightness.Value;
+                    mainLight.intensity = Brightness.Value * lightIntensity;
+                    RenderSettings.ambientLight = new Vector4(1, 1, 1, 1) * lightIntensity * Brightness.Value;
+                    Shader.SetGlobalFloat("_lightIntensity", lightIntensity);
                }
 
                if (args.lightEstimation.averageColorTemperature.HasValue) {
                     ColorTemperature = args.lightEstimation.averageColorTemperature.Value;
-                    Debug.Log (">>>>" + ColorTemperature.Value);
                     mainLight.colorTemperature = ColorTemperature.Value;
                }
      
                if (args.lightEstimation.colorCorrection.HasValue) {
                     ColorCorrection = args.lightEstimation.colorCorrection.Value;
-                    Debug.Log (">>>>" + ColorCorrection.Value);
                     mainLight.color = ColorCorrection.Value;
                }
           }

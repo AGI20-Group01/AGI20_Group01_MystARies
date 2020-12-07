@@ -13,7 +13,7 @@ public class SeasonHandeler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Shader.SetGlobalVector( "_worldCenter", transform.position);
     }
 
     // Update is called once per frame
@@ -49,6 +49,7 @@ public class SeasonHandeler : MonoBehaviour
             Shader.SetGlobalFloat( "_Season1_t", 0);
             Shader.SetGlobalFloat( "_Season2_t", 1-t);
         }
+        Shader.SetGlobalFloat( "_worldRot", rot);
 
 
     }
