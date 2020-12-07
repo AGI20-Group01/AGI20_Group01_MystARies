@@ -42,6 +42,16 @@ public class SpiritController : MonoBehaviour
                         }
                         break;
                     }
+                case TouchPhase.Moved:
+                    {
+                        if(acumTime > holdTime) RDG.Vibration.Vibrate(new long[] { 5, 10, 5, 10 }, new int[] { 0, 255, 0, 100 }, -1, RDG.Vibration.CancelVibration);
+                        break;
+                    }
+                case TouchPhase.Stationary:
+                    {
+                        if(acumTime > holdTime) RDG.Vibration.Vibrate(new long[] { 5, 10, 5, 10 }, new int[] { 0, 255, 0, 100 }, -1, RDG.Vibration.CancelVibration);
+                        break;
+                    }
                 case TouchPhase.Ended:
                     {
                         Ray ray = Camera.main.ScreenPointToRay(touch.position);
@@ -173,6 +183,7 @@ public class SpiritController : MonoBehaviour
             groundTracker.AddCube(position, 0);
             networkClient.snedAddCube(position);
             Debug.Log("Add");
+            RDG.Vibration.VibratePredefined(RDG.Vibration.PredefinedEffect.EFFECT_TICK, RDG.Vibration.CancelVibration);
         }
         
         else if (hit.collider.tag == "interactablecube")
@@ -184,6 +195,7 @@ public class SpiritController : MonoBehaviour
         {
             groundTracker.ShakeCube(hitpos);
             Debug.Log("unbreakble");
+            RDG.Vibration.VibratePredefined(RDG.Vibration.PredefinedEffect.EFFECT_HEAVY_CLICK, RDG.Vibration.CancelVibration);
         }
         else
         {
